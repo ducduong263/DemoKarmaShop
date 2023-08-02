@@ -119,9 +119,27 @@
       "productName": "Giày thể thao nữ",
       "productID": 4,
       "productPrice": 800000,
-      "quantity": 1,
+      "quantity": 4,
       "Image": "https://tintuc.hoang-phuc.com/wp-content/uploads/2021/12/giay-the-thao-nu-han-quoc-2.jpg",
       "id": 7
+    },
+    {
+      "userId": 5,
+      "productName": "Giày thể thao nữ",
+      "productID": 4,
+      "productPrice": 800000,
+      "quantity": 1,
+      "Image": "https://tintuc.hoang-phuc.com/wp-content/uploads/2021/12/giay-the-thao-nu-han-quoc-2.jpg",
+      "id": 8
+    },
+    {
+      "userId": 5,
+      "productName": "Giày thể thao nam",
+      "productID": 1,
+      "productPrice": 750000,
+      "quantity": 4,
+      "Image": "assets/img/product/p1.jpg",
+      "id": 9
     }
   ]
 }

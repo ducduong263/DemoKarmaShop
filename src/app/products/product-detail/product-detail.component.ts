@@ -14,6 +14,7 @@ export class ProductDetailComponent implements OnInit {
     product: Product | undefined;
     userId: number = 0;
     quantity: number = 1;
+    cartItems: any[] = [];
 
     constructor(
         private route: ActivatedRoute,
@@ -37,17 +38,44 @@ export class ProductDetailComponent implements OnInit {
             return;
         }
 
+        this.cartService.GetCartbyUserid(this.userId).subscribe(res => {
+            this.cartItems = res;
+        });
     }
 
 
     addToCart(productName: string, productId: number, productPrice: number, proImage: string) {
         if (this.Islogin.IsloggedIn()) {
-            this.cartService.addToCart(this.userId, productId, productName, productPrice, this.quantity, proImage).subscribe(() => {
-                alert('Đã thêm sản phẩm vào giỏ hàng.');
-            });
+            const existingCartItemIndex = this.cartItems.findIndex((cartItem) => cartItem.productID === productId);
+
+            if (existingCartItemIndex !== -1) {
+                // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
+                const existingCartItem = this.cartItems[existingCartItemIndex];
+                existingCartItem.quantity += this.quantity; // Cộng thêm số lượng mới
+                this.updateCartItem(existingCartItem); // Cập nhật số lượng trong giỏ hàng
+                alert('Đã cập nhật số lượng sản phẩm trong giỏ hàng.');
+            } else {
+                // Sản phẩm chưa tồn tại trong giỏ hàng, thêm vào giỏ hàng
+                this.cartService.addToCart(this.userId, productId, productName, productPrice, this.quantity, proImage).subscribe(() => {
+                    alert('Đã thêm sản phẩm vào giỏ hàng.');
+                });
+            }
         }
         else {
             alert('Vui lòng đăng nhập trước để thêm vào giỏ hàng');
         }
     }
+
+    private updateCartItem(item: any) {
+        this.cartService.updateCartItem(item).subscribe(
+            () => {
+                console.log('Đã cập nhật số lượng sản phẩm trong giỏ hàng');
+            },
+            (error) => {
+                console.log('Lỗi khi cập nhật số lượng sản phẩm trong giỏ hàng:', error);
+            }
+        );
+    }
+
+
 }
