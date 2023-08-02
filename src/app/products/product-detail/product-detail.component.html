@@ -1,0 +1,42 @@
+<section class="banner-area organic-breadcrumb">
+</section>
+
+<div class="product_image_area" *ngIf="product">
+    <div class="container">
+        <div class="row s_product_inner mb-5">
+            <div class="col-lg-6">
+                <div class="s_Product_carousel m">
+                    <div class="single-prd-item">
+                        <img style="width: 500px; height: 500px;" class="img-fluid" [src]="product.image" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 offset-lg-1">
+                <div class="s_product_text">
+                    <h3
+                        style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-style: bold;">
+                        {{ product.name }}</h3>
+                    <h2>{{ product.price | currency:"VND"}}</h2>
+                    <ul class="list">
+                        <!-- <li><span>Category</span> : {{ product.category }}</li> -->
+                        <!-- Hiển thị các thông tin sản phẩm khác tùy ý -->
+                    </ul>
+                    <p>{{ product.description }}</p>
+
+                    <div class="product_count">
+                        <label for="qty">Số lượng:</label>
+                        <input type="number" [max]="product.quantity" [(ngModel)]="quantity" [min]=0 value="1"
+                            title="Quantity:" class="input-text qty">
+                        <label class="available-quantity">Sản phẩm sẵn có: {{ product.quantity }}</label>
+                    </div>
+                    <div class="card_area d-flex align-items-center">
+                        <!-- Kiểm tra xem product có tồn tại không trước khi gọi hàm addToCart -->
+                        <button style="border: 0;" class="primary-btn" *ngIf="product"
+                            (click)="addToCart(product.name,product.id,product.price,product.image)">Thêm vào giỏ
+                            hàng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

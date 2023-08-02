@@ -1,0 +1,23 @@
+/* cart.component.css */
+
+/* Thêm margin cho button-wrapper để căn chỉnh theo chiều dọc */
+.button-wrapper {
+    display: flex;
+    justify-content: center; /* Căn chỉnh theo chiều ngang */
+    margin-top: 20px; /* Thêm margin ở trên để căn chỉnh theo chiều dọc */
+}
+
+/* Đưa button vào giữa màn hình */
+.primary-btn {
+    display: block;
+    border-radius: 5px;
+}
+/* Thay đổi kiểu biểu tượng thùng rác */
+.delete-icon {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+    margin-left: 10px;
+}

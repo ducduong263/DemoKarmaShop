@@ -1,0 +1,56 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+
+    </div>
+</section>
+
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-6">
+                <div class="login_form_inner">
+                    <h3>Đăng ký tài khoản</h3>
+
+                    <form class="row login_form" [formGroup]="regisForm" (ngSubmit)="onRegister()">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" formControlName="name" placeholder="Họ và tên"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Họ và tên'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" formControlName="email" placeholder="Email"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" formControlName="password"
+                                placeholder="Mật khẩu" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Mật khẩu'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" formControlName="confirmPassword"
+                                placeholder="Nhập lại mật khẩu" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Nhập lại mật khẩu'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <button type="submit" class="primary-btn">Đăng ký</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <img class="img-fluid" src="assets/img/login.jpg" alt="">
+                    <div class="hover">
+                        <h4>Bạn đã có tài khoản?</h4>
+                        <a class="primary-btn" routerLink="/login">Đăng nhập ngay</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,47 @@
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+
+    </div>
+</section>
+
+<section class="login_box_area section_gap">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="login_box_img">
+                    <img class="img-fluid" src="assets/img/login.jpg" alt="">
+                    <div class="hover">
+                        <h4>Bạn mới đến website của chúng tôi?</h4>
+                        <a class="primary-btn" [routerLink]="['/register']">Tạo tài khoản ngay</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="login_form_inner">
+                    <h3>Đăng nhập</h3>
+
+                    <form class="row login_form" action="" method="post" id="contactForm" [formGroup]="loginForm"
+                        (submit)="onLogin()">
+                        <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="name" formControlName="email"
+                                placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <input type="password" class="form-control" id="name" formControlName="password"
+                                placeholder="Password" onfocus="this.placeholder = ''"
+                                onblur="this.placeholder = 'Password'">
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <div class="creat_account">
+
+                            </div>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" class="primary-btn">Đăng nhập</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

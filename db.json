@@ -1,0 +1,127 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Giày thể thao nam",
+      "description": "Giày thể thao nam phong cách và thoải mái.",
+      "price": 750000,
+      "color": "Đen",
+      "size": "40",
+      "image": "assets/img/product/p1.jpg",
+      "category": "Giày thể thao",
+      "quantity": 5
+    },
+    {
+      "id": 2,
+      "name": "Giày cao gót nữ",
+      "description": "Giày cao gót nữ thanh lịch và sang trọng.",
+      "price": 950000,
+      "color": "Hồng",
+      "size": "37",
+      "image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+      "category": "Giày cao gót",
+      "quantity": 10
+    },
+    {
+      "id": 3,
+      "name": "Giày thể thao trẻ em",
+      "description": "Giày thể thao cho trẻ em năng động và dễ chịu.",
+      "price": 350000,
+      "color": "Cam",
+      "size": "28",
+      "image": "assets/img/product/p3.jpg",
+      "category": "Giày trẻ em",
+      "quantity": 5
+    },
+    {
+      "id": 4,
+      "name": "Giày thể thao nữ",
+      "description": "Giày thể thao nữ thời trang và thoải mái.",
+      "price": 800000,
+      "color": "Trắng",
+      "size": "38",
+      "image": "https://tintuc.hoang-phuc.com/wp-content/uploads/2021/12/giay-the-thao-nu-han-quoc-2.jpg",
+      "category": "Giày thể thao",
+      "quantity": 10
+    },
+    {
+      "id": 5,
+      "name": "Giày cao gót nam",
+      "description": "Giày cao gót nam kiêu sa và lịch lãm.",
+      "price": 890000,
+      "color": "Đen",
+      "size": "42",
+      "image": "assets/img/product/p5.jpg",
+      "category": "Giày cao gót",
+      "quantity": 5
+    },
+    {
+      "id": 6,
+      "name": "Giày búp bê nữ",
+      "description": "Giày búp bê nữ dễ thương và phong cách.",
+      "price": 450000,
+      "color": "Hồng",
+      "size": "36",
+      "image": "assets/img/product/p6.jpg",
+      "category": "Giày búp bê",
+      "quantity": 5
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "password": "password123",
+      "role": "user"
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "password": "secret456",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "name": "Bob Johnson",
+      "email": "bob@example.com",
+      "password": "secure789",
+      "role": "user"
+    },
+    {
+      "id": 4,
+      "name": "Alice Lee",
+      "email": "alice@example.com",
+      "password": "mypassword",
+      "role": "user"
+    },
+    {
+      "name": "nguyenducduong",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "role": "user",
+      "id": 5
+    }
+  ],
+  "cart": [
+    {
+      "userId": 5,
+      "productName": "Giày cao gót nữ",
+      "productID": 2,
+      "productPrice": 950000,
+      "quantity": 1,
+      "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+      "id": 6
+    },
+    {
+      "userId": 5,
+      "productName": "Giày thể thao nữ",
+      "productID": 4,
+      "productPrice": 800000,
+      "quantity": 1,
+      "Image": "https://tintuc.hoang-phuc.com/wp-content/uploads/2021/12/giay-the-thao-nu-han-quoc-2.jpg",
+      "id": 7
+    }
+  ]
+}
