@@ -49,13 +49,11 @@ export class ProductDetailComponent implements OnInit {
             const existingCartItemIndex = this.cartItems.findIndex((cartItem) => cartItem.productID === productId);
 
             if (existingCartItemIndex !== -1) {
-                // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
                 const existingCartItem = this.cartItems[existingCartItemIndex];
-                existingCartItem.quantity += this.quantity; // Cộng thêm số lượng mới
-                this.updateCartItem(existingCartItem); // Cập nhật số lượng trong giỏ hàng
+                existingCartItem.quantity += this.quantity;
+                this.updateCartItem(existingCartItem);
                 alert('Đã cập nhật số lượng sản phẩm trong giỏ hàng.');
             } else {
-                // Sản phẩm chưa tồn tại trong giỏ hàng, thêm vào giỏ hàng
                 this.cartService.addToCart(this.userId, productId, productName, productPrice, this.quantity, proImage).subscribe(() => {
                     alert('Đã thêm sản phẩm vào giỏ hàng.');
                 });
