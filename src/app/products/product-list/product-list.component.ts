@@ -13,14 +13,16 @@ import { AuthService } from 'src/app/Service/auth.service';
 export class ProductListComponent implements OnInit {
     product: Product | undefined;
     userId: number = 0;
-
+    productforgetID: Product | undefined;
     products: Array<Product> = new Array<Product>();
+    cartItems: any[] = [];
+
     constructor(
         private pro: ProductService,
         private cartService: CartService,
         private Islogin: AuthService,
-        private router: Router) { }
-
+        private router: Router,
+        private prosv: ProductService) { }
     ngOnInit(): void {
         window.scrollTo(0, 0);
 
@@ -33,19 +35,57 @@ export class ProductListComponent implements OnInit {
         } else {
             return;
         }
+        this.cartService.GetCartbyUserid(this.userId).subscribe(res => {
+            this.cartItems = res;
+        });
     }
     addToCart(productName: string, productId: number, productPrice: number, proImage: string) {
         if (this.Islogin.IsloggedIn()) {
-            this.cartService.addToCart(this.userId, productId, productName, productPrice, 1, proImage).subscribe(() => {
-                console.log(this.userId, productId, productName, productPrice, 1, proImage);
-                alert('Đã thêm sản phẩm vào giỏ hàng.');
-                this.router.navigate(['cart']);
-                window.scrollTo(0, 0);
+            // Gọi service để lấy thông tin sản phẩm dựa trên productId
+            this.prosv.getProductById(productId).subscribe((res) => {
+                this.productforgetID = res;
+                console.log('old quantity', this.productforgetID);
+
+                // Tìm chỉ mục của sản phẩm trong giỏ hàng hiện tại
+                const existingCartItemIndex = this.cartItems.findIndex((cartItem) => cartItem.productID === productId);
+                console.log(existingCartItemIndex);
+
+                if (existingCartItemIndex !== -1) {
+                    const existingCartItem = this.cartItems[existingCartItemIndex];
+                    const newTotalQuantity = existingCartItem.quantity + 1;
+
+                    if (this.productforgetID && newTotalQuantity <= this.productforgetID.quantity) {
+                        existingCartItem.quantity = newTotalQuantity;
+                        // Gọi hàm cập nhật số lượng trong giỏ hàng
+                        this.updateCartItem(existingCartItem);
+                        alert('Đã cập nhật số lượng sản phẩm trong giỏ hàng.');
+                    } else {
+                        alert('Không thể thêm số lượng sản phẩm vượt quá số lượng tồn kho!');
+                    }
+                } else {
+                    // Gọi hàm thêm sản phẩm vào giỏ hàng
+                    this.cartService.addToCart(this.userId, productId, productName, productPrice, 1, proImage).subscribe(() => {
+                        alert('Đã thêm sản phẩm vào giỏ hàng.');
+                        this.router.navigate(['cart']);
+                        window.scrollTo(0, 0);
+                    });
+                }
             });
-        }
-        else {
+        } else {
             alert('Vui lòng đăng nhập trước để thêm vào giỏ hàng');
         }
+    }
+
+
+    private updateCartItem(item: any) {
+        this.cartService.updateCartItem(item).subscribe(
+            () => {
+                console.log('Đã cập nhật số lượng sản phẩm trong giỏ hàng');
+            },
+            (error) => {
+                console.log('Lỗi khi cập nhật số lượng sản phẩm trong giỏ hàng:', error);
+            }
+        );
     }
 
 }
