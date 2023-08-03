@@ -51,7 +51,7 @@ export class ProductDetailComponent implements OnInit {
                 // Sản phẩm đã tồn tại trong giỏ hàng, cập nhật số lượng
                 const existingCartItem = this.cartItems[existingCartItemIndex];
                 const newTotalQuantity = existingCartItem.quantity + this.quantity;
-
+                console.log('test', this.product);
                 if (this.product && newTotalQuantity <= this.product.quantity) {
                     existingCartItem.quantity = newTotalQuantity;
                     this.updateCartItem(existingCartItem); // Cập nhật số lượng trong giỏ hàng

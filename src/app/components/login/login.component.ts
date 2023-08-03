@@ -32,16 +32,13 @@ export class LoginComponent implements OnInit {
             this.loginService.GetbyEmail(this.loginForm.value.email).subscribe(res => {
                 this.userdata = res;
                 if (this.userdata[0].password === this.loginForm.value.password) {
-                    this.toastr.success('Đăng nhập thành công');
                     sessionStorage.setItem('userId', this.userdata[0].id);
                     sessionStorage.setItem('username', this.userdata[0].name);
                     sessionStorage.setItem('userrole', this.userdata[0].role);
                     // this.router.navigate(['']);
                     location.assign('http://localhost:4200');
-                    this.toastr.success('Đăng nhập thành công');
                     window.scrollTo(0, 0);
-
-
+                    this.toastr.success('Đăng nhập thành công');
                 } else {
                     this.toastr.error('Tài khoản mật khẩu không chính xác');
                 }
