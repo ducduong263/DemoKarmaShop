@@ -8,10 +8,12 @@ import { AuthService } from 'src/app/Service/auth.service';
 })
 export class HeaderComponent implements OnInit {
     islogin: any;
+    isadmin: any;
     constructor(private lgcheck: AuthService) { }
 
     ngOnInit(): void {
         this.islogin = this.lgcheck.IsloggedIn();
+        this.isadmin = this.lgcheck.getUserRole();
     }
     OnLogOut() {
         sessionStorage.clear();
