@@ -119,18 +119,9 @@
       "productName": "Giày thể thao nam",
       "productID": 1,
       "productPrice": 750000,
-      "quantity": 5,
+      "quantity": 2,
       "Image": "assets/img/product/p1.jpg",
       "id": 9
-    },
-    {
-      "userId": 5,
-      "productName": "Giày búp bê nữ",
-      "productID": 6,
-      "productPrice": 450000,
-      "quantity": 5,
-      "Image": "assets/img/product/p6.jpg",
-      "id": 10
     }
   ]
 }
