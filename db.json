@@ -1,15 +1,15 @@
 {
   "products": [
     {
-      "id": 1,
       "name": "Giày thể thao nam",
       "description": "Giày thể thao nam phong cách và thoải mái.",
-      "price": 750000,
       "color": "Đen",
       "size": "40",
+      "price": 750000,
+      "quantity": 5,
       "image": "assets/img/product/p1.jpg",
       "category": "Giày thể thao",
-      "quantity": 5
+      "id": 1
     },
     {
       "id": 2,

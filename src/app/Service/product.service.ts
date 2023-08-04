@@ -19,6 +19,15 @@ export class ProductService {
     getProducts(limit: number): any {
         return this.http.get<any>(`${api}/`);
     }
+    updateProduct(updatedProduct: Product) {
+        const url = `${api}products/${updatedProduct.id}`;
+        console.log('test url', url);
+        return this.http.put(url, updatedProduct);
+
+    }
+    // updateProducts(Product: any, id: number):Observable<any> {
+    //     return this.http.put(this.api + )
+    // }
 
     getProductById(id: number): Observable<Product> {
         return this.http.get<Product>(`${api}products/${id}`);
@@ -27,8 +36,4 @@ export class ProductService {
     getCart(userId: number): Observable<any> {
         return this.http.get<any>(`${api}/cart/${userId}`);
     }
-    // addToCart(userId: number, productName: string, productId: number, productPrice: number, quantity: number, image: string): Observable<any> {
-    //     return this.cartService.addToCart(userId, productId, productName, productPrice, quantity, image);
-    // }
-
 }

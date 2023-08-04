@@ -38,16 +38,6 @@ export class ProductlistComponent implements OnInit {
       this.products = res;
     });
   }
-  private updateCartItem(item: any) {
-    this.cartService.updateCartItem(item).subscribe(
-      () => {
-        console.log('Đã cập nhật số lượng sản phẩm trong giỏ hàng');
-      },
-      (error) => {
-        console.log('Lỗi khi cập nhật số lượng sản phẩm trong giỏ hàng:', error);
-      }
-    );
-  }
   openProductDetailPopup(product: Product) {
     const dialogRef = this.dialog.open(ProductdetailpopupComponent, {
       width: '500px',
@@ -55,8 +45,9 @@ export class ProductlistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      // Nếu bạn muốn thực hiện hành động sau khi đóng popup
+      this.pro.getProduct().subscribe((res) => {
+        this.products = res;
+      });
     });
   }
 }

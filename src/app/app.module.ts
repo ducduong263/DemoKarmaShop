@@ -20,6 +20,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
 import { ProductlistComponent } from './components/admin/quanlysanpham/productlist/productlist.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ProductdetailpopupComponent } from './components/admin/quanlysanpham/productdetailpopup/productdetailpopup.component';
 
 @NgModule({
     declarations: [
@@ -37,8 +38,9 @@ import { MatDialogModule } from '@angular/material/dialog';
         CheckoutComponent,
         QuanlysanphamComponent,
         ProductlistComponent,
+        ProductdetailpopupComponent
     ],
-    imports: [BrowserModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
+    imports: [BrowserModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
     providers: [],
     bootstrap: [AppComponent],
 })
