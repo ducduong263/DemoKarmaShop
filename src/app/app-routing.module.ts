@@ -6,15 +6,34 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
 import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { ProductListComponent } from './products/product-list/product-list.component';
+import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
+import { QuanlydonhangComponent } from './components/admin/quanlydonhang/quanlydonhang.component';
+import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
 
 const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'products', component: HomeComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'register', component: RegisterComponent },
-    { path: 'detail/:id', component: ProductDetailComponent },
-    { path: 'cart', component: CartComponent },
-    { path: 'checkout', component: CheckoutComponent },
+    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    {
+        path: 'home', component: HomeComponent, children: [
+            { path: '', component: ProductListComponent },
+            { path: 'login', component: LoginComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: 'detail/:id', component: ProductDetailComponent },
+            { path: 'cart', component: CartComponent },
+            { path: 'checkout', component: CheckoutComponent },
+
+        ]
+    },
+    {
+        path: 'admin', component: AdminComponent, children: [
+            { path: 'quanlysanpham', component: QuanlysanphamComponent },
+            { path: 'quanlydanhmuc', component: QuanlydanhmucComponent },
+            { path: 'quanlydonhang', component: QuanlydonhangComponent },
+
+        ]
+    }
+
 
 ];
 

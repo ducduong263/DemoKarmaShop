@@ -17,6 +17,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { CartComponent } from './components/cart/cart.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
+import { ProductlistComponent } from './components/admin/quanlysanpham/productlist/productlist.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ProductdetailpopupComponent } from './components/admin/quanlysanpham/productdetailpopup/productdetailpopup.component';
+import { ProductAddPopupComponent } from './components/admin/quanlysanpham/product-add-popup/product-add-popup.component';
+import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
 
 @NgModule({
     declarations: [
@@ -32,8 +38,13 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
         CartComponent,
         AdminComponent,
         CheckoutComponent,
+        QuanlysanphamComponent,
+        ProductlistComponent,
+        ProductdetailpopupComponent,
+        ProductAddPopupComponent,
+        QuanlydanhmucComponent
     ],
-    imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
+    imports: [BrowserModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
     providers: [],
     bootstrap: [AppComponent],
 })

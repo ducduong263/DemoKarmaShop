@@ -12,7 +12,7 @@
                     <img class="img-fluid" src="assets/img/login.jpg" alt="">
                     <div class="hover">
                         <h4>Bạn mới đến website của chúng tôi?</h4>
-                        <a class="primary-btn" [routerLink]="['/register']">Tạo tài khoản ngay</a>
+                        <a class="primary-btn" routerLink="/home/register">Tạo tài khoản ngay</a>
                     </div>
                 </div>
             </div>
@@ -25,6 +25,17 @@
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" id="name" formControlName="email"
                                 placeholder="Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                        </div>
+                        <div class="col-md-12 form-group" *ngIf="
+                          loginForm.controls['email'].invalid &&
+                          (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)
+                        ">
+                            <div style="color: red" *ngIf="loginForm.controls['email'].hasError('required')">
+                                Chưa nhập email
+                            </div>
+                            <div style="color: red" *ngIf="loginForm.controls['email'].hasError('email')">
+                                email sai định dạng
+                            </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <input type="password" class="form-control" id="name" formControlName="password"
