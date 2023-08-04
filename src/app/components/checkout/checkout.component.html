@@ -21,64 +21,65 @@
             <div class="row">
                 <div class="col-lg-8">
                     <h3>Thông tin giao hàng</h3>
-                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
+                    <form class="row contact_form" action="#" method="post" novalidate="novalidate" >
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control">
-                            <span class="placeholder" data-placeholder="Họ và tên"></span>
+                            <input type="text" class="form-control " name="fullName" placeholder="Họ và tên"  [(ngModel)]="customer.fullName" required>
+                            <!-- <span class="placeholder" data-placeholder="Họ và tên"></span> -->
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control">
-                            <span class="placeholder" data-placeholder="Số điện thoại"></span>
+                            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" [(ngModel)]="customer.phone" required>
+                            <!-- <span class="placeholder" data-placeholder="Số điện thoại"></span> -->
                         </div>
-                        <div class="col-md-12 form-group p_star">
-                            <select class="country_select">
-                                <option value="1">Tỉnh/Thành phố </option>
-                                <option value="2">Country</option>
-                                <option value="4">Country</option>
+                        <!-- <div class="col-md-12 form-group p_star">
+                            <select class="country_select" name="city"  (ngModel)="customer.city" required >
+                                <option value="" selected disabled>Chọn thành phố</option>
+                                <option *ngFor="let city of cities" >{{ city }} </option>
+
                             </select>
                         </div>
-                        <div class="col-md-12 form-group p_star">
-                            <select class="country_select">
-                                <option value="1">Quận/Huyện</option>
-                                <option value="2">Country</option>
-                                <option value="4">Country</option>
+                        <div class="col-md-12 form-group p_star" >
+                            <select class="country_select" name="district" required [(ngModel)]="customer.district">
+                                <option value="" selected disabled>Chọn Quận</option>
+                                <option *ngFor="let district of districts"  >{{ district }}</option>
                             </select>
+                            
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <select class="country_select">
-                                <option value="1">Phường/Xã</option>
-                                <option value="2">Country</option>
-                                <option value="4">Country</option>
+                            <select class="country_select"  name="ward" [(ngModel)]="customer.ward"  required>
+                                <option value="" selected disabled>Chọn Phường</option>
+                                <option *ngFor="let ward of wards" [value]="ward" >{{ ward }}</option>
                             </select>
-                        </div>
+                            
+                        </div> -->
 
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="city" name="city">
-                            <span class="placeholder" data-placeholder="Tên đường, Tòa nhà, Số nhà"></span>
+                            <input type="text" class="form-control" id="city" name="city" placeholder="Tên đường, Tòa nhà, Số nhà" [(ngModel)]="customer.address" required>
+                            <!-- <span class="placeholder" data-placeholder="Tên đường, Tòa nhà, Số nhà"></span> -->
                         </div>
                         <div class="col-md-12 form-group">
                             <div class="creat_account">
                             </div>
                             <textarea class="form-control" name="message" id="message" rows="1"
-                                placeholder="Order Notes"></textarea>
+                                placeholder="Order Notes" [(ngModel)]="customer.note"></textarea>
                         </div>
                     </form>
                 </div>
                 <div class="col-lg-4">
                     <div class="order_box">
                         <h2>Thông tin giỏ hàng</h2>
-                        <ul class="list">
+                        <ul class="list" >
                             <li><a>Sản phẩm <span>Tổng</span></a></li>
-                            <li><a>Fresh Blackberry <span class="middle">x 02</span> <span
-                                        class="last">$720.00</span></a></li>
-                            <li><a>Fresh Tomatoes <span class="middle">x 02</span> <span class="last">$720.00</span></a>
-                            </li>
+                            <ul *ngFor="let item of cartItems">
+                                <li><a>{{ item.productName }} <span class="middle">x {{item.quantity}}</span> <span
+                                        class="last">{{ item.productPrice | currency:"VND" }}</span></a></li>
 
+                            </ul>
+                            
                         </ul>
                         <ul class="list list_2">
                             <li><a>Phí vận chuyển <span>Giá cố định: {{ 0000 | currency:"VND"}}</span></a>
                             </li>
-                            <li><a>Tổng cộng <span>$2160.00</span></a></li>
+                            <li><a>Tổng cộng <span>{{ getTotalPrice() | currency:"VND" }}</span></a></li>
 
                         </ul>
 
@@ -93,7 +94,7 @@
                         </div>
 
 
-                        <a class="primary-btn" href="#">Xác nhận đặt hàng</a>
+                        <a class="primary-btn" (click)="onSubmit()">Xác nhận đặt hàng</a>
                     </div>
                 </div>
             </div>

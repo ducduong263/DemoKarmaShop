@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product.model';
 import { CartItem } from '../model/product.model';
+import { Customer } from '../model/checkout.model';
 const api = 'http://localhost:3000/';
 
 @Injectable({
@@ -34,4 +35,13 @@ export class CartService {
     removeCartItem(cartItemId: number): Observable<any> {
         return this.http.delete<any>(api + 'cart/' + cartItemId);
     }
+    // lưu trữ thông tin giỏ hàng vào JSON server
+    saveCart(cartData: any): Observable<any> {
+        return this.http.post(this.apiurl + 'cart/', cartData);
+    }
+    // Hàm để lưu thông tin khách hàng vào JSON server
+    saveCustomerAndCart(orderData: { customer: Customer; cartItems: any[] }): Observable<any> {
+        return this.http.post(api + "donhang/", orderData);
+      }
+    
 }
