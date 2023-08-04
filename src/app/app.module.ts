@@ -21,6 +21,8 @@ import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlys
 import { ProductlistComponent } from './components/admin/quanlysanpham/productlist/productlist.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ProductdetailpopupComponent } from './components/admin/quanlysanpham/productdetailpopup/productdetailpopup.component';
+import { ProductAddPopupComponent } from './components/admin/quanlysanpham/product-add-popup/product-add-popup.component';
+import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
 
 @NgModule({
     declarations: [
@@ -38,7 +40,9 @@ import { ProductdetailpopupComponent } from './components/admin/quanlysanpham/pr
         CheckoutComponent,
         QuanlysanphamComponent,
         ProductlistComponent,
-        ProductdetailpopupComponent
+        ProductdetailpopupComponent,
+        ProductAddPopupComponent,
+        QuanlydanhmucComponent
     ],
     imports: [BrowserModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
     providers: [],

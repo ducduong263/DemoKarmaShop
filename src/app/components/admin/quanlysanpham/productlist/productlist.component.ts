@@ -6,6 +6,7 @@ import { ProductService } from 'src/app/Service/product.service';
 import { Product } from 'src/app/model/product.model';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductdetailpopupComponent } from '../productdetailpopup/productdetailpopup.component';
+import { ProductAddPopupComponent } from '../product-add-popup/product-add-popup.component';
 
 @Component({
   selector: 'app-productlist',
@@ -41,7 +42,20 @@ export class ProductlistComponent implements OnInit {
   openProductDetailPopup(product: Product) {
     const dialogRef = this.dialog.open(ProductdetailpopupComponent, {
       width: '500px',
-      data: product // Truyền dữ liệu sản phẩm vào popup
+      data: product
+    });
+
+
+    dialogRef.afterClosed().subscribe(result => {
+      this.pro.getProduct().subscribe((res) => {
+        this.products = res;
+      });
+    });
+  }
+  openAddProductPopup() {
+    const dialogRef = this.dialog.open(ProductAddPopupComponent, {
+      width: '500px',
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -57,4 +71,5 @@ export class ProductlistComponent implements OnInit {
       });
     });
   }
+
 }

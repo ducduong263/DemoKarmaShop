@@ -10,6 +10,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { ProductListComponent } from './products/product-list/product-list.component';
 import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
 import { QuanlydonhangComponent } from './components/admin/quanlydonhang/quanlydonhang.component';
+import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -27,6 +28,7 @@ const routes: Routes = [
     {
         path: 'admin', component: AdminComponent, children: [
             { path: 'quanlysanpham', component: QuanlysanphamComponent },
+            { path: 'quanlydanhmuc', component: QuanlydanhmucComponent },
             { path: 'quanlydonhang', component: QuanlydonhangComponent },
 
         ]
