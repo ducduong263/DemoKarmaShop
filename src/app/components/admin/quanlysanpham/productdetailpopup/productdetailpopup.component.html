@@ -1,0 +1,19 @@
+<div class="modal-content" style="border: 0px;">
+    <div class="modal-header bg-white text-white">
+        <h2 class="modal-title">Thông tin chi tiết sản phẩm</h2>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" (click)="closeDialog()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body bg-light text-dark">
+        <p><strong>Tên sản phẩm:</strong> </p>
+        <p><strong>Số lượng còn:</strong> {{ data.quantity }}</p>
+        <p><strong>Tên sản phẩm:</strong> <input formControlName="name" value="{{ data.name }}" class="form-control">
+        </p>
+        <p><strong>Số lượng còn:</strong> <input formControlName="quantity" class="form-control"></p>
+    </div>
+    <div class="modal-footer bg-white " style="border-radius: 5px;">
+        <button type="button" class="btn btn-secondary" (click)="closeDialog()">Đóng</button>
+        <button type="button" class="btn btn-primary" (click)="editProduct()">Chỉnh sửa</button>
+    </div>
+</div>

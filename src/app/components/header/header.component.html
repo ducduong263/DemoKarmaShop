@@ -14,20 +14,21 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item"> <a class="nav-link" *ngIf="isadmin" [routerLink]="['/']">Trang quan
+                        <li class="nav-item"> <a class="nav-link" *ngIf="isadmin" routerLink="/admin"
+                                routerLinkActive="active">Trang quan
                                 trị</a>
                         </li>
-                        <li class="nav-item"><a class="nav-link" [routerLink]="['/']">Trang chủ</a>
+                        <li class="nav-item"><a class="nav-link" routerLink="/home">Trang chủ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/login']" routerLinkActive="router-link-active"
-                                *ngIf="!islogin">Đăng nhập</a>
+                            <a class="nav-link" routerLink="login" routerLinkActive="active" *ngIf="!islogin">Đăng
+                                nhập</a>
                             <a class="nav-link" (click)="OnLogOut()" routerLinkActive="router-link-active"
                                 *ngIf="islogin">Đăng xuất</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="nav-item"><a [routerLink]="['/cart']" class="cart"><span class="ti-bag"></span></a>
+                        <li class="nav-item"><a [routerLink]="['cart']" class="cart"><span class="ti-bag"></span></a>
                         </li>
                         <li class="nav-item">
                             <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
@@ -46,4 +47,5 @@
             </form>
         </div>
     </div>
+    <script src="assets/js/main.js"></script>
 </header>

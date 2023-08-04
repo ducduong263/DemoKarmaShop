@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginService } from 'src/app/Service/login.service';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/Service/auth.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'app-login',
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
         private toastr: ToastrService,
         private loginService: AuthService,
         private router: Router,
+        private route: ActivatedRoute
     ) { }
     ngOnInit(): void {
         window.scrollTo(0, 0);
@@ -37,14 +38,24 @@ export class LoginComponent implements OnInit {
                     sessionStorage.setItem('userrole', this.userdata[0].role);
                     // this.router.navigate(['']);
                     location.assign('http://localhost:4200');
+                    // this.router.navigate([''], { relativeTo: this.route })
                     window.scrollTo(0, 0);
-                    this.toastr.success('Đăng nhập thành công');
+                    this.toastr.success("Đăng nhập thành công", "Thông báo", {
+                        progressBar: true,
+                        newestOnTop: true
+                    })
                 } else {
-                    this.toastr.error('Tài khoản mật khẩu không chính xác');
+                    this.toastr.error("Đăng nhập Thất Bại", "Thông báo", {
+                        progressBar: true,
+                        newestOnTop: true
+                    })
                 }
             });
         } else {
-            this.toastr.warning('Vui lòng điền đầy đủ thông tin');
+            this.toastr.error("Vui lòng điền đầy đủ thông tin", "Thông báo", {
+                progressBar: true,
+                newestOnTop: true
+            })
         }
     }
 }
