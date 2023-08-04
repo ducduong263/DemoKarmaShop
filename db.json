@@ -100,7 +100,7 @@
       "name": "nguyenducduong",
       "email": "admin@gmail.com",
       "password": "admin",
-      "role": "user",
+      "role": "admin",
       "id": 5
     }
   ],

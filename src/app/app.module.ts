@@ -17,6 +17,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CartComponent } from './components/cart/cart.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
         CartComponent,
         AdminComponent,
         CheckoutComponent,
+        QuanlysanphamComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
     providers: [],
