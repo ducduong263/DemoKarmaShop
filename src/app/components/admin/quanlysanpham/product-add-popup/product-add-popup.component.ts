@@ -25,7 +25,7 @@ export class ProductAddPopupComponent {
       price: [0],
       quantity: [0, Validators.min(0)],
       image: [''],
-      category: ['', Validators.required]
+      category: ['', Validators.required],
     });
   }
 
@@ -59,4 +59,26 @@ export class ProductAddPopupComponent {
       })
     }
   }
+  // onImageFileSelected(event: any) {
+  //   const file = event.target.files[0];
+  //   if (file) {
+  //     this.addProductForm.patchValue({ imageFile: file, imageUrl: '' });
+  //   }
+  // }
+
+  onImageUrlChanged() {
+    const imageUrl = this.addProductForm.get('image')?.value;
+    if (imageUrl) {
+      this.addProductForm.patchValue({ imageFile: null });
+    }
+  }
+
+  getImageUrl() {
+    const imageUrl = this.addProductForm.get('image')?.value;
+    if (imageUrl) {
+      return imageUrl;
+    }
+    return '';
+  }
+
 }

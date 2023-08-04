@@ -27,11 +27,14 @@
 
             </div>
             <div class="row">
-                <p class="mb-2 col-md-8 "><strong>Địa chỉ hình ảnh:</strong> <input formControlName="image"
-                        class="form-control"></p>
+                <p class="mb-2 col-md-8">
+                    <strong>Địa chỉ hình:</strong>
+                    <input formControlName="image" type="text" class="form-control">
+                </p>
                 <div class="col-md-4 d-flex justify-content-center">
-                    <img style="width: 80px; height: auto;" class="rounded-circle" src="" alt="">
+                    <img style="width: 80px; height: auto;" class="rounded-circle" [src]="getImageUrl()" alt="">
                 </div>
+
             </div>
 
             <p><strong>Loại sản phẩm:</strong> <input formControlName="category" class="form-control"></p>

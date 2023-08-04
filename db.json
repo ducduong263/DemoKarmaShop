@@ -45,15 +45,15 @@
       "quantity": 10
     },
     {
-      "id": 5,
-      "name": "Giày cao gót nam",
-      "description": "Giày cao gót nam kiêu sa và lịch lãm.",
-      "price": 890000,
+      "name": "Giày tây nam",
+      "description": "Giày tây nam nam kiêu sa và lịch lãm.",
       "color": "Đen",
       "size": "42",
-      "image": "assets/img/product/p5.jpg",
-      "category": "Giày cao gót",
-      "quantity": 5
+      "price": "2000000",
+      "quantity": 1,
+      "image": "https://newzada.com/wp-content/uploads/2019/07/GIAY-TAY-DEN-1.jpg",
+      "category": "Giày nam",
+      "id": 5
     },
     {
       "id": 6,

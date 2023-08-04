@@ -58,4 +58,11 @@ export class ProductdetailpopupComponent {
       })
     }
   }
+  getImageUrl() {
+    const imageUrl = this.editprof.get('image')?.value;
+    if (imageUrl) {
+      return imageUrl;
+    }
+    return '';
+  }
 }
