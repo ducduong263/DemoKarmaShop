@@ -1,10 +1,14 @@
+<div class="d-flex justify-content-end mb-3"><a class="btn btn-success mx-2" style="color: white">Thêm sản phẩm</a>
+</div>
+
 <table class="table table-bordered table-striped" style="width: 100;">
+
     <thead>
         <tr>
             <th>ID</th>
             <th>Tên sản phẩm</th>
             <th>Số lượng còn</th>
-            <th>OPTIONS</th>
+            <th>OPTIONS </th>
         </tr>
     </thead>
     <tbody>
@@ -17,7 +21,7 @@
                 <a class="btn btn-primary mx-2" (click)="openProductDetailPopup(item)" style="color: white">
                     Xem Chi tiết
                 </a>
-                <a class="btn btn-danger mx-2" style="color: white">
+                <a class="btn btn-danger mx-2" (click)="delete(item.id)" style="color: white">
                     Xóa
                 </a>
             </td>

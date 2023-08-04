@@ -50,4 +50,11 @@ export class ProductlistComponent implements OnInit {
       });
     });
   }
+  delete(id: number) {
+    this.prosv.deleteProduct(id).subscribe((res) => {
+      this.pro.getProduct().subscribe((res) => {
+        this.products = res;
+      });
+    });
+  }
 }
