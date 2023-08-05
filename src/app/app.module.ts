@@ -1,3 +1,4 @@
+import { QuanlydonhangComponent } from './components/admin/quanlydonhang/quanlydonhang.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
@@ -24,6 +25,8 @@ import { ProductdetailpopupComponent } from './components/admin/quanlysanpham/pr
 import { ProductAddPopupComponent } from './components/admin/quanlysanpham/product-add-popup/product-add-popup.component';
 import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
 
+
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -41,8 +44,10 @@ import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlyd
         QuanlysanphamComponent,
         ProductlistComponent,
         ProductdetailpopupComponent,
-        ProductAddPopupComponent,
-        QuanlydanhmucComponent
+        ProductAddPopupComponent, 
+        QuanlydanhmucComponent,
+        QuanlydonhangComponent
+
     ],
     imports: [BrowserModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
     providers: [],
