@@ -17,6 +17,10 @@ export class ProductListComponent implements OnInit {
     productforgetID: Product | undefined;
     products: Array<Product> = new Array<Product>();
     cartItems: any[] = [];
+    selectedCategory: string | null = null;
+    selectedColor: string | null = null;
+
+
 
     constructor(
         private pro: ProductService,
@@ -27,10 +31,12 @@ export class ProductListComponent implements OnInit {
         private prosv: ProductService) { }
     ngOnInit(): void {
         window.scrollTo(0, 0);
-
+        //lấy danh sách sp
         this.pro.getProduct().subscribe((res) => {
             this.products = res;
         });
+
+        //lấy userid -> lấy thông tin trong giỏ hàng
         const userIdString = sessionStorage.getItem('userId');
         if (userIdString !== null) {
             this.userId = parseInt(userIdString, 10);
@@ -41,6 +47,38 @@ export class ProductListComponent implements OnInit {
             this.cartItems = res;
         });
     }
+
+    selectCategory(category: string | null) {
+        this.selectedCategory = category;
+        if (category) {
+            this.selectedCategory = category;
+            // Gọi service để lấy danh sách sản phẩm theo danh mục được chọn
+            this.pro.getProductByCategory(category).subscribe((res) => {
+                this.products = res;
+            });
+        } else {
+            // Nếu danh mục là null, hiển thị lại tất cả sản phẩm
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res;
+            });
+        }
+    }
+    selectColor(color: string | null) {
+        this.selectedColor = color;
+        if (color) {
+            this.selectedCategory = color;
+            this.pro.getProductByCategory(color).subscribe((res) => {
+                this.products = res;
+            });
+        } else {
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res;
+            });
+        }
+    }
+
+
+
     addToCart(productName: string, productId: number, productPrice: number, proImage: string) {
         if (this.Islogin.IsloggedIn()) {
             // Gọi service để lấy thông tin sản phẩm dựa trên productId
@@ -97,5 +135,6 @@ export class ProductListComponent implements OnInit {
             }
         );
     }
+
 
 }

@@ -43,4 +43,10 @@ export class ProductService {
         const url = `${api}products`;
         return this.http.post<Product>(url, newProduct);
     }
+    getProductByCategory(category: string): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?category=${category}`);
+    }
+    getProductByColor(color: string): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?color=${color}`);
+    }
 }

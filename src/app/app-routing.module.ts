@@ -30,7 +30,6 @@ const routes: Routes = [
             { path: 'quanlysanpham', component: QuanlysanphamComponent },
             { path: 'quanlydanhmuc', component: QuanlydanhmucComponent },
             { path: 'quanlydonhang', component: QuanlydonhangComponent },
-
         ]
     }
 
