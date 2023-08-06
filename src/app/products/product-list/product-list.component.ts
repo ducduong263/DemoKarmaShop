@@ -21,8 +21,31 @@ export class ProductListComponent implements OnInit {
     selectedColor: string | null = null;
     uniqueColors: string[] = [];
     selectedSortType: string = 'default';
+    currentPage: number = 1;
 
+    productsPerPage: number = 6;
 
+    get startIndex(): number {
+        return (this.currentPage - 1) * this.productsPerPage;
+    }
+
+    get endIndex(): number {
+        return Math.min(this.startIndex + this.productsPerPage, this.products.length);
+    }
+    onPageChange(newPage: number) {
+        this.currentPage = newPage;
+    }
+    canGoToPreviousPage(): boolean {
+        return this.currentPage > 1;
+    }
+
+    canGoToNextPage(): boolean {
+        return this.currentPage < this.getPages().length;
+    }
+    getPages(): number[] {
+        const pageCount = Math.ceil(this.products.length / this.productsPerPage);
+        return Array.from({ length: pageCount }, (_, index) => index + 1);
+    }
     constructor(
         private pro: ProductService,
         private cartService: CartService,

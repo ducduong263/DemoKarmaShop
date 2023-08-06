@@ -65,6 +65,17 @@
       "image": "assets/img/product/p6.jpg",
       "category": "Giày búp bê",
       "quantity": 5
+    },
+    {
+      "name": "2134536",
+      "description": "12435",
+      "color": "1234",
+      "size": "123",
+      "price": "123",
+      "quantity": 2,
+      "image": "213",
+      "category": "123",
+      "id": 7
     }
   ],
   "users": [
