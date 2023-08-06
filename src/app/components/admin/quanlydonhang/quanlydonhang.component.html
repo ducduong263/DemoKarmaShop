@@ -1,1 +1,51 @@
-<p>quanlydonhang works!</p>
+<section class="order-list">
+    <h2>Danh sách đơn hàng</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>ID Đơn hàng</th>
+          <th>Tên Khách Hàng</th>
+          <th>Tổng tiền</th>
+          <th>Trạng thái</th>
+          <th>Chi tiết</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders[0]; let i = index;">
+          <td>{{ order.id }}</td>
+          <td>{{ order.customer.fullName }}</td>
+          <td> {{ getTotalPrice(i) }} </td>
+          <td>chưa hoàn thành</td>
+          <td>
+            <button >Xem chi tiết</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section class="order-details" *ngIf="selectedOrderId !== null">
+    <h2>Chi tiết đơn hàng #{{ selectedOrderId }}</h2>
+    <div *ngIf="selectedOrder">
+      <!-- <p>Ngày đặt hàng: {{ selectedOrder.orderDate | date: 'dd/MM/yyyy' }}</p> -->
+      <p>Tổng tiền: {{ selectedOrder.totalPrice  }}</p>
+      <p>Trạng thái: {{ selectedOrder.status }}</p>
+      <h3>Sản phẩm trong đơn hàng</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Số lượng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of selectedOrder.items">
+            <td>{{ item.productName }}</td>
+            <td>{{ item.price  }}</td>
+            <td>{{ item.quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>

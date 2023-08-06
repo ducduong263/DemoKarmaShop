@@ -102,34 +102,104 @@
       "password": "admin",
       "role": "admin",
       "id": 5
-    },
-    {
-      "name": "nguyenducduong",
-      "email": "123@gmail.com",
-      "password": "123",
-      "confirmPassword": "123",
-      "role": "user",
-      "id": 6
     }
   ],
   "cart": [
     {
-      "userId": 5,
-      "productName": "Giày tây nam",
-      "productID": 5,
-      "productPrice": "2000000",
-      "quantity": 1,
-      "Image": "https://newzada.com/wp-content/uploads/2019/07/GIAY-TAY-DEN-1.jpg",
-      "id": 10
-    },
-    {
-      "userId": 6,
+      "userId": 1,
       "productName": "Giày thể thao nam",
       "productID": 1,
       "productPrice": 750000,
       "quantity": 2,
       "Image": "assets/img/product/p1.jpg",
-      "id": 11
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "productName": "Giày cao gót nữ",
+      "productID": 2,
+      "productPrice": 950000,
+      "quantity": 1,
+      "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+      "id": 2
+    },
+    {
+      "userId": 5,
+      "productName": "Giày thể thao nam",
+      "productID": 1,
+      "productPrice": 750000,
+      "quantity": 1,
+      "Image": "assets/img/product/p1.jpg",
+      "id": 3
+    },
+    {
+      "userId": 5,
+      "productName": "Giày cao gót nữ",
+      "productID": 2,
+      "productPrice": 950000,
+      "quantity": 1,
+      "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+      "id": 4
+    }
+  ],
+  "donhang": [
+    {
+      "customer": {
+        "fullName": "linh",
+        "phone": "02312321",
+        "address": "123 fffff",
+        "note": "đsdsdsd"
+      },
+      "cartItems": [
+        {
+          "userId": 1,
+          "productName": "Giày thể thao nam",
+          "productID": 1,
+          "productPrice": 750000,
+          "quantity": 2,
+          "Image": "assets/img/product/p1.jpg",
+          "id": 1
+        },
+        {
+          "userId": 1,
+          "productName": "Giày cao gót nữ",
+          "productID": 2,
+          "productPrice": 950000,
+          "quantity": 1,
+          "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+          "id": 2
+        }
+      ],
+      "id": 1
+    },
+    {
+      "customer": {
+        "fullName": "abc",
+        "phone": "2315433",
+        "address": "adawdawdawd",
+        "note": "duheiy28"
+      },
+      "cartItems": [
+        {
+          "userId": 5,
+          "productName": "Giày thể thao nam",
+          "productID": 1,
+          "productPrice": 750000,
+          "quantity": 1,
+          "Image": "assets/img/product/p1.jpg",
+          "id": 3
+        },
+        {
+          "userId": 5,
+          "productName": "Giày cao gót nữ",
+          "productID": 2,
+          "productPrice": 950000,
+          "quantity": 1,
+          "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+          "id": 4
+        }
+      ],
+      "id": 2
     }
   ]
 }

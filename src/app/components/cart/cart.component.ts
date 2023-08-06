@@ -13,7 +13,7 @@ export class CartComponent implements OnInit {
   cartItems: any[] = []; // Tạo một mảng để lưu trữ dữ liệu trong giỏ hàng
   productID: Product | undefined;
   soluong: any;
-
+  
 
   constructor(private cartService: CartService, private productService: ProductService,) { }
 
@@ -79,5 +79,17 @@ export class CartComponent implements OnInit {
         console.log('Lỗi xóa sản phẩm khỏi giỏ hàng:', error);
       });
     }
+  }
+  onSaveCart() {
+    this.cartService.saveCart(this.cartItems).subscribe(
+      (response) => {
+        console.log('Đơn hàng đã được lưu trữ vào JSON server:', response);
+        // Xử lý khi đơn hàng đã được lưu thành công
+      },
+      (error) => {
+        console.error('Lỗi khi lưu đơn hàng:', error);
+        // Xử lý khi có lỗi xảy ra
+      }
+    );
   }
 }
