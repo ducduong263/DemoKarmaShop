@@ -17,9 +17,29 @@
                             <input type="text" class="form-control" formControlName="name" placeholder="Họ và tên"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Họ và tên'">
                         </div>
+                        <div class="col-md-12 form-group" *ngIf="
+                        regisForm.controls['name'].invalid &&
+                        (regisForm.controls['name'].dirty || regisForm.controls['name'].touched)
+                      ">
+                            <div style="color: red" *ngIf="regisForm.controls['email'].hasError('required')">
+                                Vui lòng nhập tên
+                            </div>
+
+                        </div>
                         <div class="col-md-12 form-group">
                             <input type="text" class="form-control" formControlName="email" placeholder="Email"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email'">
+                        </div>
+                        <div class="col-md-12 form-group" *ngIf="
+                        regisForm.controls['email'].invalid &&
+                        (regisForm.controls['email'].dirty || regisForm.controls['email'].touched)
+                      ">
+                            <div style="color: red" *ngIf="regisForm.controls['email'].hasError('required')">
+                                Vui lòng nhập email
+                            </div>
+                            <div style="color: red" *ngIf="regisForm.controls['email'].hasError('email')">
+                                Email sai định dạng
+                            </div>
                         </div>
                         <div class="col-md-12 form-group">
                             <input type="password" class="form-control" formControlName="password"
