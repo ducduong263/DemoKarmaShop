@@ -1,3 +1,4 @@
+
 <section class="order-list">
     <h2>Danh sách đơn hàng</h2>
     <table class="table">
@@ -14,22 +15,33 @@
         <tr *ngFor="let order of orders[0]; let i = index;">
           <td>{{ order.id }}</td>
           <td>{{ order.customer.fullName }}</td>
-          <td> {{ getTotalPrice(i) }} </td>
+          <td> {{ getTotalPrice(i) | currency: 'VND' }} </td>
           <td>chưa hoàn thành</td>
           <td>
-            <button >Xem chi tiết</button>
+            <button (click)="openPopup(order,i)" >Xem chi tiết</button>
           </td>
         </tr>
       </tbody>
     </table>
   </section>
+
+<div class="popup"  *ngIf="showPopup">
+  <div class="popup-content" >
+    <span class="close-btn" (click)="closePopup()">&larr;</span>
+    <h2>Chi tiết đơn hàng #{{ selectedOrder.id }}</h2>
+    <div>
+      <p>Ngày đặt hàng: {{ selectedOrder.orderDate | date: 'dd/MM/yyyy' }}</p>
+      <p>Tổng tiền: {{ getTotalPrice(totalPriceId) | currency: 'VND' }}</p>
+      <p>Trạng thái: chưa hoàn thành</p>
   
-  <section class="order-details" *ngIf="selectedOrderId !== null">
-    <h2>Chi tiết đơn hàng #{{ selectedOrderId }}</h2>
-    <div *ngIf="selectedOrder">
-      <!-- <p>Ngày đặt hàng: {{ selectedOrder.orderDate | date: 'dd/MM/yyyy' }}</p> -->
-      <p>Tổng tiền: {{ selectedOrder.totalPrice  }}</p>
-      <p>Trạng thái: {{ selectedOrder.status }}</p>
+      <!-- Hiển thị thông tin khách hàng -->
+      <h3>Thông tin khách hàng</h3>
+      <p>Tên khách hàng: {{ selectedOrder.customer.fullName }}</p>
+      <p>Địa chỉ: {{ selectedOrder.customer.address }}</p>
+      <p>Số điện thoại: {{ selectedOrder.customer.phone }}</p>
+      <p>Ghi chú: {{ selectedOrder.customer.note }}</p>
+  
+      <!-- Hiển thị sản phẩm trong đơn hàng -->
       <h3>Sản phẩm trong đơn hàng</h3>
       <table class="table">
         <thead>
@@ -40,12 +52,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of selectedOrder.items">
+          <tr *ngFor="let item of selectedOrder.cartItems">
             <td>{{ item.productName }}</td>
-            <td>{{ item.price  }}</td>
+            <td>{{ item.productPrice | currency: 'VND' }}</td>
             <td>{{ item.quantity }}</td>
           </tr>
         </tbody>
       </table>
-    </div>
-  </section>
+    
+  </div>
+</div>
