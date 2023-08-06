@@ -102,26 +102,34 @@
       "password": "admin",
       "role": "admin",
       "id": 5
+    },
+    {
+      "name": "nguyenducduong",
+      "email": "123@gmail.com",
+      "password": "123",
+      "confirmPassword": "123",
+      "role": "user",
+      "id": 6
     }
   ],
   "cart": [
     {
       "userId": 5,
-      "productName": "Giày cao gót nữ",
-      "productID": 2,
-      "productPrice": 950000,
-      "quantity": 10,
-      "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
-      "id": 6
+      "productName": "Giày tây nam",
+      "productID": 5,
+      "productPrice": "2000000",
+      "quantity": 1,
+      "Image": "https://newzada.com/wp-content/uploads/2019/07/GIAY-TAY-DEN-1.jpg",
+      "id": 10
     },
     {
-      "userId": 5,
+      "userId": 6,
       "productName": "Giày thể thao nam",
       "productID": 1,
       "productPrice": 750000,
       "quantity": 2,
       "Image": "assets/img/product/p1.jpg",
-      "id": 9
+      "id": 11
     }
   ]
 }
