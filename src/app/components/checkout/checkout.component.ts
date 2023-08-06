@@ -1,3 +1,4 @@
+import { CartComponent } from './../cart/cart.component';
 import { Component,OnInit } from '@angular/core';
 import { CartService } from 'src/app/Service/cart.service';
 import { Product } from 'src/app/model/product.model';
@@ -55,7 +56,16 @@ export class CheckoutComponent implements OnInit {
     this.cartService.saveCustomerAndCart({ customer: this.customer, cartItems: this.cartItems }).subscribe(
       (response) => {
         console.log('Thông tin khách hàng và giỏ hàng đã được lưu trữ:', response);
-        // Xử lý khi thông tin khách hàng và giỏ hàng đã được lưu thành công
+        for (const item of this.cartItems) {
+          this.cartService.removeCartItem(item.id).subscribe(() => {
+            
+            console.log('Đã xóa sản phẩm khỏi giỏ hàng');
+          }, (error: any) => {
+            console.log('Lỗi xóa sản phẩm khỏi giỏ hàng:', error);
+          });
+        }
+        window.location.reload();
+        
       },
       (error) => {
         console.error('Lỗi khi lưu thông tin khách hàng và giỏ hàng:', error);
