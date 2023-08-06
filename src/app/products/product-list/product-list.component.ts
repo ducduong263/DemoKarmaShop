@@ -4,6 +4,7 @@ import { Product } from 'src/app/model/product.model';
 import { Route, ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/Service/cart.service';
 import { AuthService } from 'src/app/Service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-product-list',
@@ -22,6 +23,7 @@ export class ProductListComponent implements OnInit {
         private cartService: CartService,
         private Islogin: AuthService,
         private router: Router,
+        private toastr: ToastrService,
         private prosv: ProductService) { }
     ngOnInit(): void {
         window.scrollTo(0, 0);
@@ -48,7 +50,6 @@ export class ProductListComponent implements OnInit {
 
                 // Tìm chỉ mục của sản phẩm trong giỏ hàng hiện tại
                 const existingCartItemIndex = this.cartItems.findIndex((cartItem) => cartItem.productID === productId);
-                console.log(existingCartItemIndex);
 
                 if (existingCartItemIndex !== -1) {
                     const existingCartItem = this.cartItems[existingCartItemIndex];
@@ -58,16 +59,25 @@ export class ProductListComponent implements OnInit {
                         existingCartItem.quantity = newTotalQuantity;
                         // Gọi hàm cập nhật số lượng trong giỏ hàng
                         this.updateCartItem(existingCartItem);
-                        alert('Đã cập nhật số lượng sản phẩm trong giỏ hàng.');
+                        this.toastr.success("Đã cập nhật số lượng sản phẩm trong giỏ hàng", "Thông báo", {
+                            progressBar: true,
+                            newestOnTop: true
+                        })
                     } else {
-                        alert('Không thể thêm số lượng sản phẩm vượt quá số lượng tồn kho!');
+                        this.toastr.warning("Không thể thêm số lượng sản phẩm vượt quá số lượng tồn kho!", "Thông báo", {
+                            progressBar: true,
+                            newestOnTop: true
+                        })
                     }
                 } else {
                     // Gọi hàm thêm sản phẩm vào giỏ hàng
                     this.cartService.addToCart(this.userId, productId, productName, productPrice, 1, proImage).subscribe(() => {
-                        alert('Đã thêm sản phẩm vào giỏ hàng.');
-                        this.router.navigate(['cart']);
-                        window.scrollTo(0, 0);
+                        this.toastr.success("Đã thêm sản phẩm vào giỏ hàng", "Thông báo", {
+                            progressBar: true,
+                            newestOnTop: true
+                        })
+                        // this.router.navigate(['home/cart']);
+                        // window.scrollTo(0, 0);
                     });
                 }
             });
