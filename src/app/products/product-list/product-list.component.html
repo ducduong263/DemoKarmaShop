@@ -103,50 +103,35 @@
                 <div class="top-filter-head">Bộ lọc sản phẩm</div>
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
-                    <form action="#">
+                    <form>
                         <ul>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="black"
-                                    name="color"><label for="black">Black<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather"
-                                    name="color"><label for="balckleather">Black
-                                    Leather<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred"
-                                    name="color"><label for="blackred">Black
-                                    with red<span>(19)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="gold"
-                                    name="color"><label for="gold">Gold<span>(19)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey"
-                                    name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
+                            <li class="filter-list" *ngFor="let color of uniqueColors">
+                                <input class="pixel-radio" type="radio" id="{{ color }}" name="color"
+                                    (click)="selectColor(color)" [checked]="selectedColor === color">
+                                <label for="{{ color }}">{{ color }} <span>({{ getProductCountByColor(color)
+                                        }})</span></label>
+                            </li>
                         </ul>
                     </form>
                 </div>
 
-                <div class="common-filter">
-                    <div class="head">Giá</div>
-                    <div class="price-range-area">
-                        <div id="price-range"></div>
-                        <div class="value-wrapper d-flex">
-                            <div class="price">Giá:</div>
-                            <div id="lower-value"></div>
-                            <span> Đ</span>
-                            <div class="to">đến</div>
-                            <div id="upper-value"></div>
-                            <span> Đ</span>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting">
-                    <select>
-                        <option value="1">Sắp xếp</option>
-                        <option value="1">Giá tăng dần</option>
-                        <option value="1">Giá giảm dần</option>
-                    </select>
+                    <button class="btn btn-light mx-3" (click)="onSortTypeChange('ascending')">
+                        Giá tăng dần <i class="fas fa-arrow-up"></i>
+                    </button>
+                    <button class="btn btn-light" (click)="onSortTypeChange('descending')">
+                        Giá giảm dần <i class="fas fa-arrow-down"></i>
+                    </button>
                 </div>
+
+
+
                 <div class="sorting mr-auto">
                 </div>
 

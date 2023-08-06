@@ -19,7 +19,8 @@ export class ProductListComponent implements OnInit {
     cartItems: any[] = [];
     selectedCategory: string | null = null;
     selectedColor: string | null = null;
-
+    uniqueColors: string[] = [];
+    selectedSortType: string = 'default';
 
 
     constructor(
@@ -34,6 +35,8 @@ export class ProductListComponent implements OnInit {
         //lấy danh sách sp
         this.pro.getProduct().subscribe((res) => {
             this.products = res;
+            this.uniqueColors = this.getUniqueColors(this.products);
+            this.sortProductsByPrice();
         });
 
         //lấy userid -> lấy thông tin trong giỏ hàng
@@ -47,7 +50,24 @@ export class ProductListComponent implements OnInit {
             this.cartItems = res;
         });
     }
-
+    sortProductsByPrice() {
+        if (this.selectedSortType === 'ascending') {
+            this.products.sort((a, b) => a.price - b.price);
+        } else if (this.selectedSortType === 'descending') {
+            this.products.sort((a, b) => b.price - a.price);
+        }
+    }
+    onSortTypeChange(sortType: string) {
+        this.selectedSortType = sortType;
+        this.sortProductsByPrice();
+    }
+    getUniqueColors(products: Product[]): string[] {
+        const colors = products.map(product => product.color);
+        return [...new Set(colors)];
+    }
+    getProductCountByColor(color: string): number {
+        return this.products.filter(product => product.color === color).length;
+    }
     selectCategory(category: string | null) {
         this.selectedCategory = category;
         if (category) {
@@ -67,7 +87,7 @@ export class ProductListComponent implements OnInit {
         this.selectedColor = color;
         if (color) {
             this.selectedCategory = color;
-            this.pro.getProductByCategory(color).subscribe((res) => {
+            this.pro.getProductByColor(color).subscribe((res) => {
                 this.products = res;
             });
         } else {
@@ -76,8 +96,6 @@ export class ProductListComponent implements OnInit {
             });
         }
     }
-
-
 
     addToCart(productName: string, productId: number, productPrice: number, proImage: string) {
         if (this.Islogin.IsloggedIn()) {
@@ -135,6 +153,7 @@ export class ProductListComponent implements OnInit {
             }
         );
     }
+
 
 
 }
