@@ -200,6 +200,64 @@
         }
       ],
       "id": 2
+    },
+    {
+      "customer": {
+        "fullName": "",
+        "phone": "",
+        "address": "",
+        "note": ""
+      },
+      "cartItems": [
+        {
+          "userId": 5,
+          "productName": "Giày thể thao nam",
+          "productID": 1,
+          "productPrice": 750000,
+          "quantity": 1,
+          "Image": "assets/img/product/p1.jpg",
+          "id": 3
+        },
+        {
+          "userId": 5,
+          "productName": "Giày cao gót nữ",
+          "productID": 2,
+          "productPrice": 950000,
+          "quantity": 1,
+          "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+          "id": 4
+        }
+      ],
+      "id": 3
+    },
+    {
+      "customer": {
+        "fullName": "",
+        "phone": "",
+        "address": "",
+        "note": ""
+      },
+      "cartItems": [
+        {
+          "userId": 5,
+          "productName": "Giày thể thao nam",
+          "productID": 1,
+          "productPrice": 750000,
+          "quantity": 1,
+          "Image": "assets/img/product/p1.jpg",
+          "id": 3
+        },
+        {
+          "userId": 5,
+          "productName": "Giày cao gót nữ",
+          "productID": 2,
+          "productPrice": 950000,
+          "quantity": 1,
+          "Image": "https://img.websosanh.vn/v2/users/review/images/su60k9a6bza5o.jpg?compress=85",
+          "id": 4
+        }
+      ],
+      "id": 4
     }
   ]
 }

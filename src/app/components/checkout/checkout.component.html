@@ -21,39 +21,42 @@
             <div class="row">
                 <div class="col-lg-8">
                     <h3>Thông tin giao hàng</h3>
-                    <form class="row contact_form" action="#" method="post" novalidate="novalidate" >
+                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control " name="fullName" placeholder="Họ và tên"  [(ngModel)]="customer.fullName" required>
+                            <input type="text" class="form-control " name="fullName" placeholder="Họ và tên"
+                                [(ngModel)]="customer.fullName" required>
                             <!-- <span class="placeholder" data-placeholder="Họ và tên"></span> -->
                         </div>
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại" [(ngModel)]="customer.phone" required>
+                            <input type="text" class="form-control" name="phone" placeholder="Số điện thoại"
+                                [(ngModel)]="customer.phone" required>
                             <!-- <span class="placeholder" data-placeholder="Số điện thoại"></span> -->
                         </div>
                         <!-- <div class="col-md-12 form-group p_star">
-                            <select class="country_select" name="city"  (ngModel)="customer.city" required >
-                                <option value="" selected disabled>Chọn thành phố</option>
-                                <option *ngFor="let city of cities" >{{ city }} </option>
+                                <select class="country_select" name="city"  (ngModel)="customer.city" required >
+                                    <option value="" selected disabled>Chọn thành phố</option>
+                                    <option *ngFor="let city of cities" >{{ city }} </option>
 
-                            </select>
-                        </div>
-                        <div class="col-md-12 form-group p_star" >
-                            <select class="country_select" name="district" required [(ngModel)]="customer.district">
-                                <option value="" selected disabled>Chọn Quận</option>
-                                <option *ngFor="let district of districts"  >{{ district }}</option>
-                            </select>
-                            
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <select class="country_select"  name="ward" [(ngModel)]="customer.ward"  required>
-                                <option value="" selected disabled>Chọn Phường</option>
-                                <option *ngFor="let ward of wards" [value]="ward" >{{ ward }}</option>
-                            </select>
-                            
-                        </div> -->
+                                </select>
+                            </div>
+                            <div class="col-md-12 form-group p_star" >
+                                <select class="country_select" name="district" required [(ngModel)]="customer.district">
+                                    <option value="" selected disabled>Chọn Quận</option>
+                                    <option *ngFor="let district of districts"  >{{ district }}</option>
+                                </select>
+                                
+                            </div>
+                            <div class="col-md-12 form-group p_star">
+                                <select class="country_select"  name="ward" [(ngModel)]="customer.ward"  required>
+                                    <option value="" selected disabled>Chọn Phường</option>
+                                    <option *ngFor="let ward of wards" [value]="ward" >{{ ward }}</option>
+                                </select>
+                                
+                            </div> -->
 
                         <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="city" name="city" placeholder="Tên đường, Tòa nhà, Số nhà" [(ngModel)]="customer.address" required>
+                            <input type="text" class="form-control" id="city" name="city"
+                                placeholder="Tên đường, Tòa nhà, Số nhà" [(ngModel)]="customer.address" required>
                             <!-- <span class="placeholder" data-placeholder="Tên đường, Tòa nhà, Số nhà"></span> -->
                         </div>
                         <div class="col-md-12 form-group">
@@ -67,14 +70,14 @@
                 <div class="col-lg-4">
                     <div class="order_box">
                         <h2>Thông tin giỏ hàng</h2>
-                        <ul class="list" >
+                        <ul class="list">
                             <li><a>Sản phẩm <span>Tổng</span></a></li>
                             <ul *ngFor="let item of cartItems">
                                 <li><a>{{ item.productName }} <span class="middle">x {{item.quantity}}</span> <span
-                                        class="last">{{ item.productPrice | currency:"VND" }}</span></a></li>
+                                            class="last">{{ item.productPrice | currency:"VND" }}</span></a></li>
 
                             </ul>
-                            
+
                         </ul>
                         <ul class="list list_2">
                             <li><a>Phí vận chuyển <span>Giá cố định: {{ 0000 | currency:"VND"}}</span></a>

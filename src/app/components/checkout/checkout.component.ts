@@ -1,27 +1,21 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/Service/cart.service';
 import { Product } from 'src/app/model/product.model';
 import { Customer } from 'src/app/model/checkout.model';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  constructor(private cartService: CartService) { }
-
-  cities: string[] = ['TPHCM ', 'Hà Nội', 'Bình Dương'];    // Dữ liệu cho các option thành phố
-  districts: string[] = ["Quận 1", "Quận 2"," Quận 3"]; // Dữ liệu cho các option quận huyện
-  wards: string[] = ['Phường 1', 'Phường 2', 'Phường 3']; // Dữ liệu cho các option phường xã
-
+  constructor(private cartService: CartService, private toastr: ToastrService,) { }
+  fullNameInvalid: boolean = false;
   public customer: Customer = {
     fullName: "",
-    // city:"",
-    // district:"",
-    // ward: '',
-    phone:'' ,
-    address:'' ,
-    note:'',
+    phone: '',
+    address: '',
+    note: '',
   };
   userId: number = 0;
   cartItems: any[] = []; // Tạo một mảng để lưu trữ dữ liệu trong giỏ hàng
@@ -41,7 +35,7 @@ export class CheckoutComponent implements OnInit {
     });
   }
   cartData: any = {
-    // Thông tin giỏ hàng, ví dụ: products, total, user info,...
+
   };
 
   getTotalPrice(): number {
@@ -52,17 +46,30 @@ export class CheckoutComponent implements OnInit {
     return totalPrice;
   }
   onSubmit() {
+    if (!this.customer.fullName || !this.customer.phone || !this.customer.address) {
+      this.fullNameInvalid = true;
+      this.toastr.error("Vui lòng điền đầy đủ thông tin", "Thông báo", {
+        progressBar: true,
+        newestOnTop: true
+      })
+      return;
+    }
     this.cartService.saveCustomerAndCart({ customer: this.customer, cartItems: this.cartItems }).subscribe(
       (response) => {
-        console.log('Thông tin khách hàng và giỏ hàng đã được lưu trữ:', response);
-        // Xử lý khi thông tin khách hàng và giỏ hàng đã được lưu thành công
+        this.toastr.success("Xác nhận đặt hàng thành công", "Thông báo", {
+          progressBar: true,
+          newestOnTop: true
+        })
       },
       (error) => {
         console.error('Lỗi khi lưu thông tin khách hàng và giỏ hàng:', error);
-        // Xử lý khi có lỗi xảy ra khi lưu thông tin khách hàng và giỏ hàng
+        this.toastr.error("Lỗi khi lưu thông tin khách hàng và giỏ hàng", "Thông báo", {
+          progressBar: true,
+          newestOnTop: true
+        })
       }
     );
   }
-  
-  
+
+
 }
