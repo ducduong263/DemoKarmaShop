@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { CartService } from 'src/app/Service/cart.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class QuanlydonhangComponent implements OnInit {
   showPopup: boolean = false;
   selectedOrder: any;
   totalPriceId: number = 0;
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.getOrderById(1); // Gọi hàm getOrderById với orderId cụ thể (ở đây là 1), bạn có thể thay đổi nếu cần.
@@ -30,7 +31,7 @@ export class QuanlydonhangComponent implements OnInit {
   //     this.selectedOrderId = this.selectedOrder.id;
   //   }
   // }
-  getTotalPrice(i:number): number {
+  getTotalPrice(i: number): number {
     let totalPrice = 0;
     for (const order of this.orders) {
       for (const item of order[i].cartItems) {
@@ -53,7 +54,7 @@ export class QuanlydonhangComponent implements OnInit {
           // Xử lý dữ liệu trả về trong response
           console.log(response);
           this.orders = [response];
-          
+
         },
         (error) => {
           // Xử lý lỗi nếu có
@@ -61,14 +62,34 @@ export class QuanlydonhangComponent implements OnInit {
         }
       );
   }
-  openPopup(order: any,i: number) {
+  openPopup(order: any, i: number) {
     this.showPopup = true;
     this.selectedOrder = order;
     this.totalPriceId = i;
   }
-  
+
   closePopup() {
     this.showPopup = false;
     this.selectedOrder = null;
+  }
+  confirmOrder() {
+    if (this.selectedOrder) {
+      this.selectedOrder.status = 'Đã xác nhận';
+      this.cartService.updateOrderStatus(this.selectedOrder.id, this.selectedOrder)
+        .subscribe(
+          (response) => {
+            this.toastr.success("Xác nhận đơn hàng thành công", "Thông báo", {
+              progressBar: true,
+              newestOnTop: true
+            })
+
+          },
+          (error) => {
+            this.toastr.error('Đã có lỗi xảy ra');
+            console.error(error);
+          }
+        );
+    }
+    this.closePopup();
   }
 }

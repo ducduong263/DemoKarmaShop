@@ -234,7 +234,7 @@
           "id": 3
         }
       ],
-      "status": "Chưa xác nhận",
+      "status": "Đã xác nhận",
       "id": 3
     },
     {
@@ -264,7 +264,7 @@
           "id": 2
         }
       ],
-      "status": "Chưa xác nhận",
+      "status": "Đã xác nhận",
       "id": 4
     }
   ]

@@ -16,6 +16,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class CheckoutComponent implements OnInit {
   constructor(private route: ActivatedRoute, private cartService: CartService, private toastr: ToastrService, private productService: ProductService, private router: Router,) { }
   fullNameInvalid: boolean = false;
+  status: string = 'Chưa xác nhận';
   public customer: Customer = {
     fullName: "",
     phone: '',
@@ -59,7 +60,12 @@ export class CheckoutComponent implements OnInit {
       })
       return;
     }
-    this.cartService.saveCustomerAndCart({ customer: this.customer, cartItems: this.cartItems }).subscribe(
+    const orderData = {
+      customer: this.customer,
+      cartItems: this.cartItems,
+      status: 'Chưa xác nhận' // Thêm thuộc tính status
+    };
+    this.cartService.saveCustomerAndCart(orderData).subscribe(
       (response) => {
 
         console.log('Thông tin khách hàng và giỏ hàng đã được lưu trữ:', response);
