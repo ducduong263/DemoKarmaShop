@@ -6,7 +6,7 @@
       "color": "Đen",
       "size": "40",
       "price": 750000,
-      "quantity": 6,
+      "quantity": 4,
       "image": "assets/img/product/p1.jpg",
       "category": "Giày thể thao",
       "id": 1
@@ -162,6 +162,7 @@
           "id": 2
         }
       ],
+      "status": "Chưa xác nhận",
       "id": 1
     },
     {
@@ -191,6 +192,7 @@
           "id": 4
         }
       ],
+      "status": "Chưa xác nhận",
       "id": 2
     },
     {
@@ -229,6 +231,7 @@
           "id": 3
         }
       ],
+      "status": "Đã xác nhận",
       "id": 3
     },
     {
@@ -258,6 +261,7 @@
           "id": 2
         }
       ],
+      "status": "Đã xác nhận",
       "id": 4
     }
   ]

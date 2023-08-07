@@ -32,6 +32,9 @@ export class AuthService {
         }
         return false;
     }
+    GetUserRole() {
+        return sessionStorage.getItem('userrole') != null ? sessionStorage.getItem('userrole')?.toString() : '';
+    }
     getUserID(): number | undefined {
         const userIdStr = sessionStorage.getItem('userId');
         return userIdStr ? parseInt(userIdStr) : undefined;

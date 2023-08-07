@@ -1,46 +1,58 @@
+<section class="content">
+  <div class="container-fluid">
+    <div class="container p-3">
+      <div class="row pt-4">
+        <div class="col-6">
+          <h1
+            style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            Danh sách đơn hàng</h1>
+        </div>
+      </div>
+      <br />
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Tên Khách Hàng</th>
+            <th>Tổng tiền</th>
+            <th>Trạng thái</th>
+            <th width="15%">Chi tiết</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders[0]; let i = index;">
+            <td>{{ order.id }}</td>
+            <td>{{ order.customer.fullName }}</td>
+            <td> {{ getTotalPrice(i) | currency: 'VND' }} </td>
+            <td>{{ order.status}}</td>
+            <td class="d-flex justify-content-center">
+              <button class="btn btn-primary" (click)="openPopup(order, i)">Xem chi tiết</button>
+              <button class="btn btn-danger ml-2" (click)="deleteOrder(order.id)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
-<section class="order-list">
-    <h2>Danh sách đơn hàng</h2>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>ID Đơn hàng</th>
-          <th>Tên Khách Hàng</th>
-          <th>Tổng tiền</th>
-          <th>Trạng thái</th>
-          <th>Chi tiết</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders[0]; let i = index;">
-          <td>{{ order.id }}</td>
-          <td>{{ order.customer.fullName }}</td>
-          <td> {{ getTotalPrice(i) | currency: 'VND' }} </td>
-          <td>chưa hoàn thành</td>
-          <td>
-            <button (click)="openPopup(order,i)" >Xem chi tiết</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </section>
 
-<div class="popup"  *ngIf="showPopup">
-  <div class="popup-content" >
+<div class="popup" *ngIf="showPopup">
+  <div class="popup-content">
     <span class="close-btn" (click)="closePopup()">&larr;</span>
     <h2>Chi tiết đơn hàng #{{ selectedOrder.id }}</h2>
     <div>
       <p>Ngày đặt hàng: {{ selectedOrder.orderDate | date: 'dd/MM/yyyy' }}</p>
       <p>Tổng tiền: {{ getTotalPrice(totalPriceId) | currency: 'VND' }}</p>
       <p>Trạng thái: chưa hoàn thành</p>
-  
+
       <!-- Hiển thị thông tin khách hàng -->
       <h3>Thông tin khách hàng</h3>
       <p>Tên khách hàng: {{ selectedOrder.customer.fullName }}</p>
       <p>Địa chỉ: {{ selectedOrder.customer.address }}</p>
       <p>Số điện thoại: {{ selectedOrder.customer.phone }}</p>
       <p>Ghi chú: {{ selectedOrder.customer.note }}</p>
-  
+
       <!-- Hiển thị sản phẩm trong đơn hàng -->
       <h3>Sản phẩm trong đơn hàng</h3>
       <table class="table">
@@ -59,6 +71,9 @@
           </tr>
         </tbody>
       </table>
-    
+
+    </div>
+    <div class="popup-footer d-flex justify-content-end">
+      <button class="btn btn-success" (click)="confirmOrder()">Xác nhận</button>
+    </div>
   </div>
-</div>

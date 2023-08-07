@@ -43,14 +43,18 @@ export class CartService {
         return this.http.post(this.apiurl + 'cart/', cartData);
     }
     // Hàm để lưu thông tin khách hàng vào JSON server
-    saveCustomerAndCart(orderData: { customer: Customer; cartItems: any[] }): Observable<any> {
+    saveCustomerAndCart(orderData: { customer: Customer; cartItems: any[]; status: string }): Observable<any> {
         return this.http.post(api + "donhang/", orderData);
     }
     // Phương thức để lấy đơn hàng từ JSON server
     getOrderById(): Observable<any> {
         return this.http.get(api + "donhang/");
     }
-    
-    
-    
+
+    updateOrderStatus(orderId: number, order: any): Observable<any> {
+        return this.http.put(api + "donhang/" + orderId, order);
+    }
+    deleteOrder(orderId: number): Observable<any> {
+        return this.http.delete(api + "donhang/" + orderId);
+    }
 }

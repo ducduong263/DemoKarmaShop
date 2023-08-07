@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/model/product.model';
 import { CartService } from 'src/app/Service/cart.service'; // Import CartService
 import { AuthService } from 'src/app/Service/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-product-detail',
@@ -20,7 +21,8 @@ export class ProductDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private productService: ProductService,
         private cartService: CartService,
-        private Islogin: AuthService
+        private Islogin: AuthService,
+        private toastr: ToastrService
     ) { }
 
     ngOnInit(): void {
@@ -55,19 +57,31 @@ export class ProductDetailComponent implements OnInit {
                 if (this.product && newTotalQuantity <= this.product.quantity) {
                     existingCartItem.quantity = newTotalQuantity;
                     this.updateCartItem(existingCartItem); // Cập nhật số lượng trong giỏ hàng
-                    alert('Đã cập nhật số lượng sản phẩm trong giỏ hàng.');
+                    this.toastr.success("Đã cập nhật số lượng sản phẩm trong giỏ hàng", "Thông báo", {
+                        progressBar: true,
+                        newestOnTop: true
+                    })
                 } else {
-                    alert('Không thể thêm số lượng sản phẩm vượt quá số lượng tồn kho!');
+                    this.toastr.error("Không thể thêm sản phẩm vượt quá số lượng tồn kho được", "Thông báo", {
+                        progressBar: true,
+                        newestOnTop: true
+                    })
                 }
             } else {
                 // Sản phẩm chưa tồn tại trong giỏ hàng, thêm vào giỏ hàng
                 this.cartService.addToCart(this.userId, productId, productName, productPrice, this.quantity, proImage).subscribe(() => {
-                    alert('Đã thêm sản phẩm vào giỏ hàng.');
+                    this.toastr.success("Đã thêm sản phẩm vào giỏ hàng", "Thông báo", {
+                        progressBar: true,
+                        newestOnTop: true
+                    })
                 });
             }
         }
         else {
-            alert('Vui lòng đăng nhập trước để thêm vào giỏ hàng');
+            this.toastr.warning("Vui lòng đăng nhập trước", "Thông báo", {
+                progressBar: true,
+                newestOnTop: true
+            })
         }
     }
 

@@ -21,9 +21,12 @@ export class ProductService {
     }
     updateProduct(updatedProduct: Product) {
         const url = `${api}products/${updatedProduct.id}`;
-        console.log('test url', url);
         return this.http.put(url, updatedProduct);
 
+    }
+    updateProductqt(updatedProduct: Product): Observable<Product> {
+        const url = `${api}products/${updatedProduct.id}`;
+        return this.http.put<Product>(url, updatedProduct);
     }
     // updateProducts(Product: any, id: number):Observable<any> {
     //     return this.http.put(this.api + )
@@ -64,4 +67,5 @@ export class ProductService {
     deleteCategory(categoryId: number): Observable<any> {
         return this.http.delete<any>(`${api}categories/${categoryId}`);
     }
+
 }
