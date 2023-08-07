@@ -5,6 +5,7 @@ import { Route, ActivatedRoute, Router } from '@angular/router';
 import { CartService } from 'src/app/Service/cart.service';
 import { AuthService } from 'src/app/Service/auth.service';
 import { ToastrService } from 'ngx-toastr';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'app-product-list',
@@ -24,6 +25,11 @@ export class ProductListComponent implements OnInit {
     currentPage: number = 1;
     categories: any[] = [];
     productsPerPage: number = 6;
+
+    searchForm: FormGroup = new FormGroup({
+        name: new FormControl(),
+    });
+
 
     get startIndex(): number {
         return (this.currentPage - 1) * this.productsPerPage;
@@ -213,7 +219,11 @@ export class ProductListComponent implements OnInit {
             }
         );
     }
-
+    onSearch() {
+        this.prosv.getProduct123(10, this.searchForm.value.name).subscribe((res) => {
+            this.products = res;
+        })
+    }
 
 
 }

@@ -126,7 +126,13 @@
                     </button>
                 </div>
 
-
+                <form action="" method="post" class="form-inline" [formGroup]="searchForm" (ngSubmit)="onSearch()">
+                    <div class="from-group">
+                        <label class="sr-only" for="">label</label>
+                        <input type="email" class="form-control" formControlName="name" placeholder="Search here">
+                    </div>
+                    <button type="submit" class="btn btn-primary mr-2">Tìm kiếm</button>
+                </form>
 
                 <div class="sorting mr-auto">
                 </div>

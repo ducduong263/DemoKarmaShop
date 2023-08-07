@@ -67,5 +67,11 @@ export class ProductService {
     deleteCategory(categoryId: number): Observable<any> {
         return this.http.delete<any>(`${api}categories/${categoryId}`);
     }
-
+    getProduct123(_limit: number = 4, search_key: any = null): Observable<Array<Product>> {
+        let url = 'http://localhost:3000/products/?_limit=' + _limit + '&_sort=id&_order=desc';
+        if (search_key != null) {
+            url += '&name_like=' + search_key;
+        }
+        return this.http.get<Array<Product>>(url);
+    }
 }
