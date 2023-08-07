@@ -102,7 +102,7 @@
       "name": "Jane Smith",
       "email": "jane@example.com",
       "password": "secret456",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": 3,
@@ -124,6 +124,13 @@
       "password": "admin",
       "role": "admin",
       "id": 5
+    },
+    {
+      "id": 1691369486951,
+      "name": "linh",
+      "email": "linh@gmail.com",
+      "password": "123",
+      "role": "admin"
     }
   ],
   "cart": [],

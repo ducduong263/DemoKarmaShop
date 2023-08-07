@@ -1,6 +1,6 @@
-
 import { CartComponent } from './../cart/cart.component';
-import { Component, OnInit } from '@angular/core';
+
+import { Component,OnInit } from '@angular/core';
 
 import { CartService } from 'src/app/Service/cart.service';
 import { Product } from 'src/app/model/product.model';
@@ -67,7 +67,6 @@ export class CheckoutComponent implements OnInit {
     };
     this.cartService.saveCustomerAndCart(orderData).subscribe(
       (response) => {
-
         console.log('Thông tin khách hàng và giỏ hàng đã được lưu trữ:', response);
         for (const item of this.cartItems) {
           this.cartService.removeCartItem(item.id).subscribe(() => {
