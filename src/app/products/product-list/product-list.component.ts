@@ -22,7 +22,7 @@ export class ProductListComponent implements OnInit {
     uniqueColors: string[] = [];
     selectedSortType: string = 'default';
     currentPage: number = 1;
-
+    categories: any[] = [];
     productsPerPage: number = 6;
 
     get startIndex(): number {
@@ -54,6 +54,7 @@ export class ProductListComponent implements OnInit {
         private toastr: ToastrService,
         private prosv: ProductService) { }
     ngOnInit(): void {
+        this.loadCategories();
         window.scrollTo(0, 0);
         //lấy danh sách sp
         this.pro.getProduct().subscribe((res) => {
@@ -72,6 +73,16 @@ export class ProductListComponent implements OnInit {
         this.cartService.GetCartbyUserid(this.userId).subscribe(res => {
             this.cartItems = res;
         });
+    }
+    loadCategories() {
+        this.pro.getCategories().subscribe(
+            (res) => {
+                this.categories = res;
+            },
+            (error) => {
+                console.error('Error loading categories', error);
+            }
+        );
     }
     sortProductsByPrice() {
         if (this.selectedSortType === 'ascending') {

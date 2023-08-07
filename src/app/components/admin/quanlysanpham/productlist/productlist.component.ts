@@ -25,8 +25,6 @@ export class ProductlistComponent implements OnInit {
     public dialog: MatDialog,
     private pro: ProductService,
     private route: ActivatedRoute,
-    private cartService: CartService,
-    private router: Router,
     private prosv: ProductService) { }
   ngOnInit(): void {
     window.scrollTo(0, 0);

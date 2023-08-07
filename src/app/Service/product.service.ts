@@ -58,4 +58,10 @@ export class ProductService {
     getCategories(): Observable<any[]> {
         return this.http.get<any[]>(`${api}categories`);
     }
+    addCategory(newCategory: any): Observable<any> {
+        return this.http.post<any>(`${api}categories`, newCategory);
+    }
+    deleteCategory(categoryId: number): Observable<any> {
+        return this.http.delete<any>(`${api}categories/${categoryId}`);
+    }
 }

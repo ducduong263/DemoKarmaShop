@@ -85,17 +85,11 @@
                     <li class="main-nav-list child">
                         <a style="cursor: pointer;" (click)="selectCategory(null)">Tất cả sản phẩm</a>
                     </li>
-                    <li class="main-nav-list child"><a style="cursor: pointer;"
-                            (click)="selectCategory('Giày thể thao')">Giày thể thao</a>
-                    </li>
-                    <li class="main-nav-list child"><a style="cursor: pointer;"
-                            (click)="selectCategory('Giày nam')">Giày nam</a>
-                    </li>
-                    <li class="main-nav-list child"><a style="cursor: pointer;"
-                            (click)="selectCategory('Dép')">Dép...</a>
-                    </li>
-                    <li class="main-nav-list child"><a href="#">Giày...</a>
-                    </li>
+                    <div *ngFor="let item of categories">
+                        <li class="main-nav-list child"><a style="cursor: pointer;"
+                                (click)="selectCategory(item.name)">{{item.name}}</a>
+                        </li>
+                    </div>
                 </ul>
             </div>
             <!-- Chọn màu sắc -->
