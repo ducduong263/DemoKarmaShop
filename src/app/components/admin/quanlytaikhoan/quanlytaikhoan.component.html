@@ -1,49 +1,80 @@
-<h1>Quản lý tài khoản</h1>
-<!-- Button to open the popup -->
-<button (click)="openPopup()">Tạo mới</button>
-
-<!-- The popup dialog -->
-<!-- The backdrop -->
 <div class="backdrop" *ngIf="showPopup"></div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="container p-3">
+      <div class="row pt-4">
+        <div class="col-6">
+          <h1
+            style="font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+            Quản lý tài khoản</h1>
+        </div>
+      </div>
+      <br />
+      <div class="d-flex justify-content-end mb-3"><a class="btn btn-primary mx-2" (click)="openPopup()"
+          style="color: white">Thêm tài khoản</a>
+      </div>
+      <!-- List of accounts -->
+      <table class="table table-bordered table-striped" style="width: 100;">
+        <thead>
+          <tr>
+            <th width="15%">Họ và tên</th>
+            <th width="25%">Tên tài khoản (email)</th>
+            <th width="15%">Quyền hạn</th>
+            <th width="45%">OPTIONS </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let account of accounts">
+            <td>{{ account.name }}</td>
+            <td>{{ account.email }}</td>
+            <td>{{ account.role }}</td>
+            <td class="d-flex justify-content-center">
+              <button class="btn btn-warning" (click)="assignRole(account, 'user')">Phân quyền User</button>
+              <button class="btn btn-success mx-3" (click)="assignRole(account, 'admin')">Phân quyền Admin</button>
+              <button class="btn btn-danger" (click)="deleteAccount(account)">Xóa</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 
 <!-- The popup container -->
 <div class="popup-container" *ngIf="showPopup">
-    <div class="popup" name="popup" *ngIf="showPopup">
-        <form name="newAccount" (ngSubmit)="createAccount()">
-          <h2>Create Account</h2>
-          <div>
-            <label>Name:</label>
-            <input type="text" name="name" [(ngModel)]="newAccount.name" required>
-          </div>
-          <div>
-            <label>Email:</label>
-            <input type="email" name="email" [(ngModel)]="newAccount.email" required>
-          </div>
-          <div>
-            <label>Password:</label>
-            <input type="password" name="password" [(ngModel)]="newAccount.password" required>
-          </div>
-          <div>
-            <label>Role:</label>
-            <select name="role" [(ngModel)]="newAccount.role">
-              <option value="user">User</option>
-              <option value="admin">Admin</option>
-            </select>
-          </div>
-          <div class="buttons">
-            <button type="submit">Create Account</button>
-            <button (click)="closePopup()">Cancel</button>
-          </div>
-        </form>
+  <div class="popup" name="popup" *ngIf="showPopup">
+    <form name="newAccount" (ngSubmit)="createAccount()">
+      <h2>Tạo tài khoản mới</h2>
+      <div>
+        <label>Họ và tên:</label>
+        <input type="text" name="name" [(ngModel)]="newAccount.name" required>
       </div>
+      <div>
+        <label>Email:</label>
+        <input type="email" name="email" [(ngModel)]="newAccount.email" required>
+      </div>
+      <div>
+        <label>Mật khẩu:</label>
+        <input type="password" name="password" [(ngModel)]="newAccount.password" required>
+      </div>
+      <div>
+        <label>Quyền hạn:</label>
+        <select name="role" [(ngModel)]="newAccount.role">
+          <option value="user">User</option>
+          <option value="admin">Admin</option>
+        </select>
+      </div>
+      <div class="buttons">
+        <tr class="d-flex justify-content-end">
+          <td>
+            <button class="btn btn-success" type="submit">Tạo tài khoản</button>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="closePopup()">Hủy</button>
+          </td>
+        </tr>
+      </div>
+    </form>
+  </div>
 </div>
-
-<!-- List of accounts -->
-<ul>
-  <li *ngFor="let account of accounts">
-    {{ account.name }} - {{ account.email }} ({{ account.role }})
-    <button (click)="assignRole(account, 'user')">Assign User</button>
-    <button (click)="assignRole(account, 'admin')">Assign Admin</button>
-    <button (click)="deleteAccount(account)">Delete</button>
-  </li>
-</ul>
