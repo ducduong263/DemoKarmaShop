@@ -8,10 +8,7 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="banner-content">
                                 <h1>Nike New <br>Collection!</h1>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                                    incididunt ut
-                                    labore et
-                                    dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                                <p>Bộ sưu tập giày đỉnh cao của thời trang và sự thoải mái!</p>
                                 <!-- <div class="add-bag d-flex align-items-center">
                                     <a class="add-btn" href=""><span class="lnr lnr-cross"></span></a>
                                     <span class="add-text text-uppercase">Add to Bag</span>
@@ -85,50 +82,34 @@
             <div class="sidebar-categories">
                 <div class="head">Danh mục sản phẩm</div>
                 <ul class="main-categories">
-                    <li class="main-nav-list child"><a href="#">Giày...</a>
+                    <li class="main-nav-list child">
+                        <a style="cursor: pointer;" (click)="selectCategory(null)">Tất cả sản phẩm</a>
                     </li>
-                    <li class="main-nav-list child"><a href="#">Dép...</a>
-                    </li>
-                    <li class="main-nav-list child"><a href="#">Giày...</a>
-                    </li>
-
-
+                    <div *ngFor="let item of categories">
+                        <li class="main-nav-list child"><a style="cursor: pointer;"
+                                (click)="selectCategory(item.name)">{{item.name}}</a>
+                        </li>
+                    </div>
                 </ul>
             </div>
+            <!-- Chọn màu sắc -->
             <div class="sidebar-filter mt-50">
-                <div class="top-filter-head">Bộ lọc sản phẩm</div>
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
-                    <form action="#">
+                    <form>
                         <ul>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="black"
-                                    name="color"><label for="black">Black<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="balckleather"
-                                    name="color"><label for="balckleather">Black
-                                    Leather<span>(29)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="blackred"
-                                    name="color"><label for="blackred">Black
-                                    with red<span>(19)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="gold"
-                                    name="color"><label for="gold">Gold<span>(19)</span></label></li>
-                            <li class="filter-list"><input class="pixel-radio" type="radio" id="spacegrey"
-                                    name="color"><label for="spacegrey">Spacegrey<span>(19)</span></label></li>
+                            <li class="filter-list" *ngFor="let color of uniqueColors">
+                                <input class="pixel-radio" type="radio" id="{{ color }}-color" name="color"
+                                    (click)="selectCategoryAndColor(selectedCategory, color)"
+                                    [checked]="selectedCategory === selectedCategory && selectedColor === color">
+                                <label for="{{ color }}-color">{{ color }} <span>({{ getProductCountByColor(color)
+                                        }})</span></label>
+                            </li>
                         </ul>
                     </form>
-                </div>
-
-                <div class="common-filter">
-                    <div class="head">Giá</div>
-                    <div class="price-range-area">
-                        <div id="price-range"></div>
-                        <div class="value-wrapper d-flex">
-                            <div class="price">Giá:</div>
-                            <div id="lower-value"></div>
-                            <span> Đ</span>
-                            <div class="to">đến</div>
-                            <div id="upper-value"></div>
-                            <span> Đ</span>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-light mt-2 btn-sm " (click)="clearSelectedColor()">Bỏ
+                            chọn màu sắc</button>
                     </div>
                 </div>
             </div>
@@ -137,23 +118,31 @@
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
                 <div class="sorting">
-                    <select>
-                        <option value="1">Sắp xếp</option>
-                        <option value="1">Giá tăng dần</option>
-                        <option value="1">Giá giảm dần</option>
-                    </select>
-                </div>
-                <div class="sorting mr-auto">
+                    <button class="btn btn-light mx-3" (click)="onSortTypeChange('ascending')">
+                        Giá tăng dần <i class="fas fa-arrow-up"></i>
+                    </button>
+                    <button class="btn btn-light" (click)="onSortTypeChange('descending')">
+                        Giá giảm dần <i class="fas fa-arrow-down"></i>
+                    </button>
                 </div>
 
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+
+
+                <div class="sorting mr-auto">
+                </div>
+                <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="pagination">
+                        <a class="prev-arrow" (click)="canGoToPreviousPage() && onPageChange(currentPage - 1)">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        </a>
+                        <a *ngFor="let page of getPages()" [class.active]="page === currentPage"
+                            (click)="onPageChange(page)">
+                            {{ page }}
+                        </a>
+                        <a class="next-arrow" (click)="canGoToNextPage() && onPageChange(currentPage + 1)">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <!-- End Filter Bar -->
@@ -161,8 +150,8 @@
             <section class="lattest-product-area pb-40 category-list">
 
                 <div class="row">
-                    <!-- single product -->
-                    <div class="col-lg-4 col-md-6" *ngFor="let pro of products">
+                    <!-- single product ---------------------------------------------------------------------------->
+                    <div class="col-lg-4 col-md-6" *ngFor="let pro of products| slice:startIndex:endIndex">
                         <div class="single-product">
                             <img class="img-fluid hinhanh" src="{{pro.image}}" alt="">
                             <div class="product-details">
@@ -197,14 +186,19 @@
                 <div class="sorting mr-auto">
 
                 </div>
-                <div class="pagination">
-                    <a href="#" class="prev-arrow"><i class="fa fa-long-arrow-left" aria-hidden="true"></i></a>
-                    <a href="#" class="active">1</a>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#" class="dot-dot"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
-                    <a href="#">6</a>
-                    <a href="#" class="next-arrow"><i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+                <div class="filter-bar d-flex flex-wrap align-items-center">
+                    <div class="pagination">
+                        <a class="prev-arrow" (click)="canGoToPreviousPage() && onPageChange(currentPage - 1)">
+                            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                        </a>
+                        <a *ngFor="let page of getPages()" [class.active]="page === currentPage"
+                            (click)="onPageChange(page)">
+                            {{ page }}
+                        </a>
+                        <a class="next-arrow" (click)="canGoToNextPage() && onPageChange(currentPage + 1)">
+                            <i class="fa fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
             <!-- End Filter Bar -->

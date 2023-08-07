@@ -43,4 +43,25 @@ export class ProductService {
         const url = `${api}products`;
         return this.http.post<Product>(url, newProduct);
     }
+    getProductByCategory(category: string): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?category=${category}`);
+    }
+    getProductByColor(color: string): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?color=${color}`);
+    }
+    getProductByPriceRange(minPrice: number, maxPrice: number): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?minPrice=${minPrice}&maxPrice=${maxPrice}`);
+    }
+    getProductByCategoryAndColor(category: string, color: string): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?category=${category}&color=${color}`);
+    }
+    getCategories(): Observable<any[]> {
+        return this.http.get<any[]>(`${api}categories`);
+    }
+    addCategory(newCategory: any): Observable<any> {
+        return this.http.post<any>(`${api}categories`, newCategory);
+    }
+    deleteCategory(categoryId: number): Observable<any> {
+        return this.http.delete<any>(`${api}categories/${categoryId}`);
+    }
 }

@@ -67,6 +67,28 @@
       "quantity": 5
     }
   ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Giày thể thao"
+    },
+    {
+      "id": 2,
+      "name": "Giày cao gót"
+    },
+    {
+      "id": 3,
+      "name": "Giày trẻ em"
+    },
+    {
+      "id": 4,
+      "name": "Giày nam"
+    },
+    {
+      "name": "Giày búp bê",
+      "id": 5
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -166,10 +188,12 @@
     },
     {
       "customer": {
+
         "fullName": "aaa",
         "phone": "aaaaaa",
         "address": "aaaaaaaaa",
         "note": "aaaaaaaaaa"
+
       },
       "cartItems": [
         {
@@ -198,20 +222,24 @@
           "quantity": 2,
           "Image": "https://tintuc.hoang-phuc.com/wp-content/uploads/2021/12/giay-the-thao-nu-han-quoc-2.jpg",
           "id": 3
+
         }
       ],
       "id": 3
     },
     {
       "customer": {
+
         "fullName": "bbb",
         "phone": "bbb",
         "address": "bbb",
         "note": "bbb"
+
       },
       "cartItems": [
         {
           "userId": 5,
+
           "productName": "Giày tây nam",
           "productID": 5,
           "productPrice": "2000000",
@@ -227,6 +255,7 @@
           "quantity": 1,
           "Image": "assets/img/product/p6.jpg",
           "id": 2
+
         }
       ],
       "id": 4

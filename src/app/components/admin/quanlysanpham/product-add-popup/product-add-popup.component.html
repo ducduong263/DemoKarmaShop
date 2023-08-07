@@ -37,7 +37,11 @@
 
             </div>
 
-            <p><strong>Loại sản phẩm:</strong> <input formControlName="category" class="form-control"></p>
+            <p><strong>Loại sản phẩm:</strong>
+                <select formControlName="category" class="form-control">
+                    <option *ngFor="let category of data" [value]="category.name">{{ category.name }}</option>
+                </select>
+            </p>
         </div>
         <div class="modal-footer bg-white " style="border-radius: 5px;">
             <button type="button" class="btn btn-secondary" (click)="closeDialog()">Đóng</button>
