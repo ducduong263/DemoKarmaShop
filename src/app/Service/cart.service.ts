@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { Product } from '../model/product.model';
 import { CartItem } from '../model/product.model';
 import { Customer } from '../model/checkout.model';
+import { switchMap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
+import { forkJoin } from 'rxjs';
 const api = 'http://localhost:3000/';
 
 @Injectable({
@@ -47,6 +50,5 @@ export class CartService {
     getOrderById(): Observable<any> {
         return this.http.get(api + "donhang/");
     }
-
 
 }

@@ -10,8 +10,10 @@ export class QuanlydonhangComponent implements OnInit {
 
   orders: any = {}; // Mảng chứa danh sách đơn hàng từ API hoặc dữ liệu của bạn.
   selectedOrderId: number | null = null; // Biến lưu trữ ID của đơn hàng đang được chọn để hiển thị chi tiết.
-  selectedOrder: any | null = null; // Biến lưu trữ thông tin chi tiết của đơn hàng được chọn.
-
+  // selectedOrder: any | null = null; // Biến lưu trữ thông tin chi tiết của đơn hàng được chọn.
+  showPopup: boolean = false;
+  selectedOrder: any;
+  totalPriceId: number = 0;
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
@@ -58,5 +60,15 @@ export class QuanlydonhangComponent implements OnInit {
           console.error(error);
         }
       );
+  }
+  openPopup(order: any,i: number) {
+    this.showPopup = true;
+    this.selectedOrder = order;
+    this.totalPriceId = i;
+  }
+  
+  closePopup() {
+    this.showPopup = false;
+    this.selectedOrder = null;
   }
 }
