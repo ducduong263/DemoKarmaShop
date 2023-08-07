@@ -53,4 +53,7 @@ export class CartService {
     updateOrderStatus(orderId: number, order: any): Observable<any> {
         return this.http.put(api + "donhang/" + orderId, order);
     }
+    deleteOrder(orderId: number): Observable<any> {
+        return this.http.delete(api + "donhang/" + orderId);
+    }
 }

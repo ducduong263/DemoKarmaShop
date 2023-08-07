@@ -92,4 +92,21 @@ export class QuanlydonhangComponent implements OnInit {
     }
     this.closePopup();
   }
+  deleteOrder(orderId: number) {
+    const confirmDelete = confirm("Bạn có chắc muốn xóa đơn hàng này?");
+    if (confirmDelete) {
+      this.cartService.deleteOrder(orderId)
+        .subscribe(
+          (response) => {
+            this.toastr.success('Đơn hàng đã được xóa');
+            // Sau khi xóa, cập nhật lại danh sách đơn hàng hoặc gọi lại API để lấy danh sách mới
+            this.getOrderById(1); // Ví dụ, gọi lại API để lấy danh sách mới
+          },
+          (error) => {
+            this.toastr.error('Đã có lỗi xảy ra');
+            console.error(error);
+          }
+        );
+    }
+  }
 }

@@ -6,7 +6,7 @@
       "color": "Đen",
       "size": "40",
       "price": 750000,
-      "quantity": 6,
+      "quantity": 4,
       "image": "assets/img/product/p1.jpg",
       "category": "Giày thể thao",
       "id": 1
@@ -126,17 +126,7 @@
       "id": 5
     }
   ],
-  "cart": [
-    {
-      "userId": 5,
-      "productName": "Giày thể thao nam",
-      "productID": 1,
-      "productPrice": 750000,
-      "quantity": 2,
-      "Image": "assets/img/product/p1.jpg",
-      "id": 1
-    }
-  ],
+  "cart": [],
   "donhang": [
     {
       "customer": {
