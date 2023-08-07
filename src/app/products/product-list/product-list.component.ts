@@ -94,13 +94,10 @@ export class ProductListComponent implements OnInit {
     selectCategory(category: string | null) {
         this.selectedCategory = category;
         if (category) {
-            this.selectedCategory = category;
-            // Gọi service để lấy danh sách sản phẩm theo danh mục được chọn
-            this.pro.getProductByCategory(category).subscribe((res) => {
-                this.products = res;
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res.filter(product => product.category.includes(category));
             });
         } else {
-            // Nếu danh mục là null, hiển thị lại tất cả sản phẩm
             this.pro.getProduct().subscribe((res) => {
                 this.products = res;
             });

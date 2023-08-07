@@ -19,6 +19,7 @@ export class ProductlistComponent implements OnInit {
   productforgetID: Product | undefined;
   products: Array<Product> = new Array<Product>();
   cartItems: any[] = [];
+  categories: any[] = [];
 
   constructor(
     public dialog: MatDialog,
@@ -38,6 +39,18 @@ export class ProductlistComponent implements OnInit {
     this.pro.getProduct().subscribe((res) => {
       this.products = res;
     });
+    this.loadCategories();
+
+  }
+  loadCategories() {
+    this.pro.getCategories().subscribe(
+      (res) => {
+        this.categories = res;
+      },
+      (error) => {
+        console.error('Error loading categories', error);
+      }
+    );
   }
   openProductDetailPopup(product: Product) {
     const dialogRef = this.dialog.open(ProductdetailpopupComponent, {
@@ -55,7 +68,7 @@ export class ProductlistComponent implements OnInit {
   openAddProductPopup() {
     const dialogRef = this.dialog.open(ProductAddPopupComponent, {
       width: '500px',
-
+      data: this.categories
     });
 
     dialogRef.afterClosed().subscribe(result => {

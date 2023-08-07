@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductService } from 'src/app/Service/product.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -10,8 +10,9 @@ import { AuthService } from 'src/app/Service/auth.service';
   selector: 'app-product-detail-popup',
   templateUrl: './productdetailpopup.component.html',
 })
-export class ProductdetailpopupComponent {
+export class ProductdetailpopupComponent implements OnInit {
   editprof: FormGroup;
+  categories: any[] = [];
 
   constructor(
     private productService: ProductService,
@@ -31,7 +32,19 @@ export class ProductdetailpopupComponent {
       category: [data.category, Validators.required]
     });
   }
-
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+  loadCategories() {
+    this.productService.getCategories().subscribe(
+      (res) => {
+        this.categories = res;
+      },
+      (error) => {
+        console.error('Error loading categories', error);
+      }
+    );
+  }
   closeDialog(): void {
     this.dialogRef.close();
   }

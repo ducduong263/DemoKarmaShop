@@ -55,6 +55,7 @@ export class ProductService {
     getProductByCategoryAndColor(category: string, color: string): Observable<Array<Product>> {
         return this.http.get<Array<Product>>(`${api}products?category=${category}&color=${color}`);
     }
-
-
+    getCategories(): Observable<any[]> {
+        return this.http.get<any[]>(`${api}categories`);
+    }
 }
