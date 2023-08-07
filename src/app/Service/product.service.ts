@@ -52,6 +52,9 @@ export class ProductService {
     getProductByPriceRange(minPrice: number, maxPrice: number): Observable<Array<Product>> {
         return this.http.get<Array<Product>>(`${api}products?minPrice=${minPrice}&maxPrice=${maxPrice}`);
     }
+    getProductByCategoryAndColor(category: string, color: string): Observable<Array<Product>> {
+        return this.http.get<Array<Product>>(`${api}products?category=${category}&color=${color}`);
+    }
 
 
 }

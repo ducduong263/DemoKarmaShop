@@ -99,23 +99,26 @@
                     </li>
                 </ul>
             </div>
+            <!-- Chọn màu sắc -->
             <div class="sidebar-filter mt-50">
-                <div class="top-filter-head">Bộ lọc sản phẩm</div>
                 <div class="common-filter">
                     <div class="head">Màu sắc</div>
                     <form>
                         <ul>
                             <li class="filter-list" *ngFor="let color of uniqueColors">
-                                <input class="pixel-radio" type="radio" id="{{ color }}" name="color"
-                                    (click)="selectColor(color)" [checked]="selectedColor === color">
-                                <label for="{{ color }}">{{ color }} <span>({{ getProductCountByColor(color)
+                                <input class="pixel-radio" type="radio" id="{{ color }}-color" name="color"
+                                    (click)="selectCategoryAndColor(selectedCategory, color)"
+                                    [checked]="selectedCategory === selectedCategory && selectedColor === color">
+                                <label for="{{ color }}-color">{{ color }} <span>({{ getProductCountByColor(color)
                                         }})</span></label>
                             </li>
                         </ul>
                     </form>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-light mt-2 btn-sm " (click)="clearSelectedColor()">Bỏ
+                            chọn màu sắc</button>
+                    </div>
                 </div>
-
-
             </div>
         </div>
         <div class="col-xl-9 col-lg-8 col-md-7">

@@ -119,7 +119,36 @@ export class ProductListComponent implements OnInit {
             });
         }
     }
+    selectCategoryAndColor(category: string | null, color: string | null) {
+        this.selectedCategory = category;
+        this.selectedColor = color;
 
+        if (category && color) {
+            // Gọi service để lấy danh sách sản phẩm theo danh mục và màu sắc được chọn
+            this.pro.getProductByCategoryAndColor(category, color).subscribe((res) => {
+                this.products = res;
+            });
+        } else if (category) {
+            // Gọi service để lấy danh sách sản phẩm theo danh mục được chọn
+            this.pro.getProductByCategory(category).subscribe((res) => {
+                this.products = res;
+            });
+        } else if (color) {
+            // Gọi service để lấy danh sách sản phẩm theo màu sắc được chọn
+            this.pro.getProductByColor(color).subscribe((res) => {
+                this.products = res;
+            });
+        } else {
+            // Nếu cả danh mục và màu sắc đều null, hiển thị lại tất cả sản phẩm
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res;
+            });
+        }
+    }
+    clearSelectedColor() {
+        this.selectedColor = null;
+        this.selectCategoryAndColor(this.selectedCategory, null);
+    }
     addToCart(productName: string, productId: number, productPrice: number, proImage: string) {
         if (this.Islogin.IsloggedIn()) {
             // Gọi service để lấy thông tin sản phẩm dựa trên productId
