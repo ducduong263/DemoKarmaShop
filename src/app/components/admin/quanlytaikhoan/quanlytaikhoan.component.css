@@ -1,21 +1,4 @@
-/* Style for the heading */
-h1 {
-    font-size: 24px;
-    text-align: center;
-    margin: 20px 0;
-  }
-  
-  /* Style for the popup button */
-  button {
-    padding: 10px 20px;
-    background-color: #007BFF;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  /* Style for the backdrop */
+/* Style for the backdrop */
 .backdrop {
     position: fixed;
     top: 0;
@@ -24,10 +7,10 @@ h1 {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5); /* Độ mờ và màu đen của nền */
     z-index: 998; /* Số thứ tự ở trên popup nhưng dưới header */
-  }
-  
-  /* Style for the popup container */
-  .popup-container {
+}
+
+/* Style for the popup container */
+.popup-container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -40,116 +23,50 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  /* Các lớp của popup vẫn giữ nguyên như trước */
-  .popup-container h2 {
+}
+
+/* Các lớp của popup vẫn giữ nguyên như trước */
+.popup-container h2 {
     font-size: 20px;
     margin-bottom: 20px;
-  }
-  
-  .popup-container div {
+}
+
+.popup-container div {
     margin-bottom: 10px;
-  }
-  
-  .popup-container label {
+}
+
+.popup-container label {
     font-weight: bold;
-  }
-  
-  .popup-container input,
-  .popup-container select {
+}
+
+.popup-container input,
+.popup-container select {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     width: 100%;
     box-sizing: border-box;
-  }
-  
-  .popup-container .buttons {
+}
+
+.popup-container .buttons {
     margin-top: 20px;
     display: flex;
     gap: 10px;
-  }
-  
-  .popup-container .buttons button {
+}
+
+.popup-container .buttons button {
     padding: 8px 15px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-  }
-  
-  .popup-container .buttons button:nth-child(1) {
-    background-color: #007BFF;
+}
+
+.popup-container .buttons button:nth-child(1) {
+    background-color: #007bff;
     color: #fff;
-  }
-  
-  .popup-container .buttons button:nth-child(2) {
+}
+
+.popup-container .buttons button:nth-child(2) {
     background-color: #dc3545;
     color: #fff;
-  }
-  
-  /* Style cho danh sách các account và các nút */
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  ul li {
-    margin-bottom: 10px;
-  }
-  
-  ul li button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  ul li button:nth-child(1) {
-    background-color: #ffc107;
-    color: #000;
-  }
-  
-  ul li button:nth-child(2) {
-    background-color: #28a745;
-    color: #fff;
-  }
-  
-  ul li button:nth-child(3) {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
-  
-  /* Style for the list of accounts */
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  ul li {
-    margin-bottom: 10px;
-  }
-  
-  ul li button {
-    padding: 5px 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  ul li button:nth-child(1) {
-    background-color: #ffc107;
-    color: #000;
-  }
-  
-  ul li button:nth-child(2) {
-    background-color: #28a745;
-    color: #fff;
-  }
-  
-  ul li button:nth-child(3) {
-    background-color: #dc3545;
-    color: #fff;
-  }
-  
+}

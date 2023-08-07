@@ -15,6 +15,7 @@ import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlyd
 import { QuanlytaikhoanComponent } from './components/admin/quanlytaikhoan/quanlytaikhoan.component';
 
 import { SuccessCheckoutComponent } from './components/checkout/success-checkout/success-checkout.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 const routes: Routes = [
@@ -31,7 +32,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'admin', component: AdminComponent, children: [
+        path: 'admin', component: AdminComponent, canActivate: [AuthGuard], children: [
             { path: 'quanlysanpham', component: QuanlysanphamComponent },
             { path: 'quanlydanhmuc', component: QuanlydanhmucComponent },
             { path: 'quanlydonhang', component: QuanlydonhangComponent },
