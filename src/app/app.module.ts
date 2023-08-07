@@ -46,7 +46,7 @@ import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlyd
         ProductdetailpopupComponent,
         ProductAddPopupComponent,
         QuanlydanhmucComponent,
-        QuanlydonhangComponent
+        QuanlydonhangComponent,
 
     ],
     imports: [BrowserModule, NgxPaginationModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],

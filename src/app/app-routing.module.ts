@@ -11,6 +11,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
 import { QuanlydonhangComponent } from './components/admin/quanlydonhang/quanlydonhang.component';
 import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
+import { SuccessCheckoutComponent } from './components/checkout/success-checkout/success-checkout.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,7 +23,7 @@ const routes: Routes = [
             { path: 'detail/:id', component: ProductDetailComponent },
             { path: 'cart', component: CartComponent },
             { path: 'checkout', component: CheckoutComponent },
-
+            { path: 'thankforpurchase', component: SuccessCheckoutComponent },
         ]
     },
     {
@@ -31,7 +32,8 @@ const routes: Routes = [
             { path: 'quanlydanhmuc', component: QuanlydanhmucComponent },
             { path: 'quanlydonhang', component: QuanlydonhangComponent },
         ]
-    }
+    },
+
 
 
 ];

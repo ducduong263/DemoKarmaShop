@@ -1,18 +1,20 @@
 
 import { CartComponent } from './../cart/cart.component';
-import { Component,OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { CartService } from 'src/app/Service/cart.service';
 import { Product } from 'src/app/model/product.model';
 import { Customer } from 'src/app/model/checkout.model';
 import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/Service/product.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-checkout',
   templateUrl: './checkout.component.html',
   styleUrls: ['./checkout.component.css']
 })
 export class CheckoutComponent implements OnInit {
-  constructor(private cartService: CartService, private toastr: ToastrService,) { }
+  constructor(private route: ActivatedRoute, private cartService: CartService, private toastr: ToastrService, private productService: ProductService, private router: Router,) { }
   fullNameInvalid: boolean = false;
   public customer: Customer = {
     fullName: "",
@@ -63,20 +65,30 @@ export class CheckoutComponent implements OnInit {
         console.log('Thông tin khách hàng và giỏ hàng đã được lưu trữ:', response);
         for (const item of this.cartItems) {
           this.cartService.removeCartItem(item.id).subscribe(() => {
-            
             console.log('Đã xóa sản phẩm khỏi giỏ hàng');
           }, (error: any) => {
             console.log('Lỗi xóa sản phẩm khỏi giỏ hàng:', error);
           });
+
+          // Cập nhật số lượng sản phẩm trong dữ liệu JSON Server
+          this.productService.getProductById(item.productID).subscribe((product: Product) => {
+            product.quantity -= item.quantity;
+            this.productService.updateProduct(product).subscribe(
+              () => {
+                console.log('Đã cập nhật số lượng sản phẩm:', product);
+              },
+              (error) => {
+                console.log('Lỗi cập nhật số lượng sản phẩm:', error);
+              }
+            );
+          });
         }
-        window.location.reload();
-        
 
         this.toastr.success("Xác nhận đặt hàng thành công", "Thông báo", {
           progressBar: true,
           newestOnTop: true
         })
-
+        this.router.navigate(['/home/thankforpurchase']);
       },
       (error) => {
         console.error('Lỗi khi lưu thông tin khách hàng và giỏ hàng:', error);
