@@ -67,6 +67,28 @@
       "quantity": 5
     }
   ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Giày thể thao"
+    },
+    {
+      "id": 2,
+      "name": "Giày cao gót"
+    },
+    {
+      "id": 3,
+      "name": "Giày trẻ em"
+    },
+    {
+      "id": 4,
+      "name": "Giày nam"
+    },
+    {
+      "name": "Giày búp bê",
+      "id": 5
+    }
+  ],
   "users": [
     {
       "id": 1,
@@ -80,7 +102,7 @@
       "name": "Jane Smith",
       "email": "jane@example.com",
       "password": "secret456",
-      "role": "admin"
+      "role": "user"
     },
     {
       "id": 3,
@@ -102,6 +124,13 @@
       "password": "admin",
       "role": "admin",
       "id": 5
+    },
+    {
+      "id": 1691369486951,
+      "name": "linh",
+      "email": "linh@gmail.com",
+      "password": "123",
+      "role": "admin"
     }
   ],
   "cart": [],

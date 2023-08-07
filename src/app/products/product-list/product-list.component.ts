@@ -17,7 +17,35 @@ export class ProductListComponent implements OnInit {
     productforgetID: Product | undefined;
     products: Array<Product> = new Array<Product>();
     cartItems: any[] = [];
+    selectedCategory: string | null = null;
+    selectedColor: string | null = null;
+    uniqueColors: string[] = [];
+    selectedSortType: string = 'default';
+    currentPage: number = 1;
+    categories: any[] = [];
+    productsPerPage: number = 6;
 
+    get startIndex(): number {
+        return (this.currentPage - 1) * this.productsPerPage;
+    }
+
+    get endIndex(): number {
+        return Math.min(this.startIndex + this.productsPerPage, this.products.length);
+    }
+    onPageChange(newPage: number) {
+        this.currentPage = newPage;
+    }
+    canGoToPreviousPage(): boolean {
+        return this.currentPage > 1;
+    }
+
+    canGoToNextPage(): boolean {
+        return this.currentPage < this.getPages().length;
+    }
+    getPages(): number[] {
+        const pageCount = Math.ceil(this.products.length / this.productsPerPage);
+        return Array.from({ length: pageCount }, (_, index) => index + 1);
+    }
     constructor(
         private pro: ProductService,
         private cartService: CartService,
@@ -26,11 +54,16 @@ export class ProductListComponent implements OnInit {
         private toastr: ToastrService,
         private prosv: ProductService) { }
     ngOnInit(): void {
+        this.loadCategories();
         window.scrollTo(0, 0);
-
+        //lấy danh sách sp
         this.pro.getProduct().subscribe((res) => {
             this.products = res;
+            this.uniqueColors = this.getUniqueColors(this.products);
+            this.sortProductsByPrice();
         });
+
+        //lấy userid -> lấy thông tin trong giỏ hàng
         const userIdString = sessionStorage.getItem('userId');
         if (userIdString !== null) {
             this.userId = parseInt(userIdString, 10);
@@ -40,6 +73,89 @@ export class ProductListComponent implements OnInit {
         this.cartService.GetCartbyUserid(this.userId).subscribe(res => {
             this.cartItems = res;
         });
+    }
+    loadCategories() {
+        this.pro.getCategories().subscribe(
+            (res) => {
+                this.categories = res;
+            },
+            (error) => {
+                console.error('Error loading categories', error);
+            }
+        );
+    }
+    sortProductsByPrice() {
+        if (this.selectedSortType === 'ascending') {
+            this.products.sort((a, b) => a.price - b.price);
+        } else if (this.selectedSortType === 'descending') {
+            this.products.sort((a, b) => b.price - a.price);
+        }
+    }
+    onSortTypeChange(sortType: string) {
+        this.selectedSortType = sortType;
+        this.sortProductsByPrice();
+    }
+    getUniqueColors(products: Product[]): string[] {
+        const colors = products.map(product => product.color);
+        return [...new Set(colors)];
+    }
+    getProductCountByColor(color: string): number {
+        return this.products.filter(product => product.color === color).length;
+    }
+    selectCategory(category: string | null) {
+        this.selectedCategory = category;
+        if (category) {
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res.filter(product => product.category.includes(category));
+            });
+        } else {
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res;
+            });
+        }
+    }
+    selectColor(color: string | null) {
+        this.selectedColor = color;
+        if (color) {
+            this.selectedCategory = color;
+            this.pro.getProductByColor(color).subscribe((res) => {
+                this.products = res;
+            });
+        } else {
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res;
+            });
+        }
+    }
+    selectCategoryAndColor(category: string | null, color: string | null) {
+        this.selectedCategory = category;
+        this.selectedColor = color;
+
+        if (category && color) {
+            // Gọi service để lấy danh sách sản phẩm theo danh mục và màu sắc được chọn
+            this.pro.getProductByCategoryAndColor(category, color).subscribe((res) => {
+                this.products = res;
+            });
+        } else if (category) {
+            // Gọi service để lấy danh sách sản phẩm theo danh mục được chọn
+            this.pro.getProductByCategory(category).subscribe((res) => {
+                this.products = res;
+            });
+        } else if (color) {
+            // Gọi service để lấy danh sách sản phẩm theo màu sắc được chọn
+            this.pro.getProductByColor(color).subscribe((res) => {
+                this.products = res;
+            });
+        } else {
+            // Nếu cả danh mục và màu sắc đều null, hiển thị lại tất cả sản phẩm
+            this.pro.getProduct().subscribe((res) => {
+                this.products = res;
+            });
+        }
+    }
+    clearSelectedColor() {
+        this.selectedColor = null;
+        this.selectCategoryAndColor(this.selectedCategory, null);
     }
     addToCart(productName: string, productId: number, productPrice: number, proImage: string) {
         if (this.Islogin.IsloggedIn()) {
@@ -97,5 +213,7 @@ export class ProductListComponent implements OnInit {
             }
         );
     }
+
+
 
 }

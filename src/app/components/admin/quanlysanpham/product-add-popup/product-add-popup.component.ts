@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProductService } from 'src/app/Service/product.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
   selector: 'app-product-add-popup',
   templateUrl: './product-add-popup.component.html',
 })
-export class ProductAddPopupComponent {
+export class ProductAddPopupComponent implements OnInit {
   addProductForm: FormGroup;
 
   constructor(
@@ -16,6 +16,7 @@ export class ProductAddPopupComponent {
     private toastr: ToastrService,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<ProductAddPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.addProductForm = this.fb.group({
       name: ['', Validators.required],
@@ -27,11 +28,17 @@ export class ProductAddPopupComponent {
       image: [''],
       category: ['', Validators.required],
     });
+
+  }
+  ngOnInit(): void {
+
   }
 
   closeDialog(): void {
     this.dialogRef.close();
   }
+
+
 
   addProduct(): void {
     if (this.addProductForm.valid) {

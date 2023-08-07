@@ -1,6 +1,7 @@
 import { QuanlydonhangComponent } from './components/admin/quanlydonhang/quanlydonhang.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,8 +25,8 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { ProductdetailpopupComponent } from './components/admin/quanlysanpham/productdetailpopup/productdetailpopup.component';
 import { ProductAddPopupComponent } from './components/admin/quanlysanpham/product-add-popup/product-add-popup.component';
 import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
-
-
+import { CurrencyPipe } from '@angular/common';
+import { QuanlytaikhoanComponent } from './components/admin/quanlytaikhoan/quanlytaikhoan.component';
 
 @NgModule({
     declarations: [
@@ -44,12 +45,12 @@ import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlyd
         QuanlysanphamComponent,
         ProductlistComponent,
         ProductdetailpopupComponent,
-        ProductAddPopupComponent, 
+        ProductAddPopupComponent,
         QuanlydanhmucComponent,
-        QuanlydonhangComponent
-
+        QuanlydonhangComponent,
+        QuanlytaikhoanComponent
     ],
-    imports: [BrowserModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
+    imports: [BrowserModule, NgxPaginationModule, ReactiveFormsModule, MatDialogModule, AppRoutingModule, HttpClientModule, FormsModule, ReactiveFormsModule, ToastrModule.forRoot()],
     providers: [],
     bootstrap: [AppComponent],
 })

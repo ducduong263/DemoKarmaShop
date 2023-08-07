@@ -1,0 +1,49 @@
+<h1>Quản lý tài khoản</h1>
+<!-- Button to open the popup -->
+<button (click)="openPopup()">Tạo mới</button>
+
+<!-- The popup dialog -->
+<!-- The backdrop -->
+<div class="backdrop" *ngIf="showPopup"></div>
+
+<!-- The popup container -->
+<div class="popup-container" *ngIf="showPopup">
+    <div class="popup" name="popup" *ngIf="showPopup">
+        <form name="newAccount" (ngSubmit)="createAccount()">
+          <h2>Create Account</h2>
+          <div>
+            <label>Name:</label>
+            <input type="text" name="name" [(ngModel)]="newAccount.name" required>
+          </div>
+          <div>
+            <label>Email:</label>
+            <input type="email" name="email" [(ngModel)]="newAccount.email" required>
+          </div>
+          <div>
+            <label>Password:</label>
+            <input type="password" name="password" [(ngModel)]="newAccount.password" required>
+          </div>
+          <div>
+            <label>Role:</label>
+            <select name="role" [(ngModel)]="newAccount.role">
+              <option value="user">User</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+          <div class="buttons">
+            <button type="submit">Create Account</button>
+            <button (click)="closePopup()">Cancel</button>
+          </div>
+        </form>
+      </div>
+</div>
+
+<!-- List of accounts -->
+<ul>
+  <li *ngFor="let account of accounts">
+    {{ account.name }} - {{ account.email }} ({{ account.role }})
+    <button (click)="assignRole(account, 'user')">Assign User</button>
+    <button (click)="assignRole(account, 'admin')">Assign Admin</button>
+    <button (click)="deleteAccount(account)">Delete</button>
+  </li>
+</ul>

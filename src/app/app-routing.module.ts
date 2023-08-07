@@ -11,6 +11,7 @@ import { ProductListComponent } from './products/product-list/product-list.compo
 import { QuanlysanphamComponent } from './components/admin/quanlysanpham/quanlysanpham.component';
 import { QuanlydonhangComponent } from './components/admin/quanlydonhang/quanlydonhang.component';
 import { QuanlydanhmucComponent } from './components/admin/quanlydanhmuc/quanlydanhmuc.component';
+import { QuanlytaikhoanComponent } from './components/admin/quanlytaikhoan/quanlytaikhoan.component';
 
 const routes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -30,7 +31,7 @@ const routes: Routes = [
             { path: 'quanlysanpham', component: QuanlysanphamComponent },
             { path: 'quanlydanhmuc', component: QuanlydanhmucComponent },
             { path: 'quanlydonhang', component: QuanlydonhangComponent },
-
+            { path: 'quanlytaikhoan', component: QuanlytaikhoanComponent }
         ]
     }
 
