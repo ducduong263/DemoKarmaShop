@@ -22,9 +22,17 @@
                         <!-- Hiển thị các thông tin sản phẩm khác tùy ý -->
                     </ul>
                     <p>{{ product.description }}</p>
+                    <div class="row">
+                        <p class="col-lg-3">
+                            <strong>Màu:</strong> {{product.color}}
+                        </p>
+                        <p class="col-lg-3">
+                            <strong>Size:</strong> {{product.size}}
+                        </p>
+                    </div>
 
                     <div class="product_count">
-                        <label for="qty">Số lượng:</label>
+                        <label for="qty"><strong>Số lượng:</strong></label>
                         <input type="number" [max]="product.quantity" [(ngModel)]="quantity" [min]=0 value="1"
                             title="Quantity:" class="input-text qty">
                         <label class="available-quantity">Sản phẩm sẵn có: {{ product.quantity }}</label>

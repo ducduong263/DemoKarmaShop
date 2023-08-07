@@ -14,9 +14,10 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav ml-auto">
-                        <li class="nav-item"> <a class="nav-link" *ngIf="isadmin" routerLink="/admin"
-                                routerLinkActive="active">Trang quan
-                                trị</a>
+                        <li class="nav-item">
+                            <a class="nav-link" *ngIf="isadmin" routerLink="/admin" routerLinkActive="active">Trang quản
+                                trị
+                            </a>
                         </li>
                         <li class="nav-item"><a class="nav-link" routerLink="/home">Trang chủ</a>
                         </li>
@@ -30,22 +31,11 @@
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item"><a [routerLink]="['cart']" class="cart"><span class="ti-bag"></span></a>
                         </li>
-                        <li class="nav-item">
-                            <button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
-                        </li>
+
                     </ul>
                 </div>
             </div>
         </nav>
-    </div>
-    <div class="search_input" id="search_input_box">
-        <div class="container">
-            <form class="d-flex justify-content-between">
-                <input type="text" class="form-control" id="search_input" placeholder="Search Here">
-                <button type="submit" class="btn"></button>
-                <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
-            </form>
-        </div>
     </div>
     <script src="assets/js/main.js"></script>
 </header>

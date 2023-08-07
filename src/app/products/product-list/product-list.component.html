@@ -117,24 +117,26 @@
         <div class="col-xl-9 col-lg-8 col-md-7">
             <!-- Start Filter Bar -->
             <div class="filter-bar d-flex flex-wrap align-items-center">
-                <div class="sorting">
+                <div class="sorting row">
                     <button class="btn btn-light mx-3" (click)="onSortTypeChange('ascending')">
                         Giá tăng dần <i class="fas fa-arrow-up"></i>
                     </button>
                     <button class="btn btn-light" (click)="onSortTypeChange('descending')">
                         Giá giảm dần <i class="fas fa-arrow-down"></i>
                     </button>
+
                 </div>
 
-                <form action="" method="post" class="form-inline" [formGroup]="searchForm" (ngSubmit)="onSearch()">
-                    <div class="from-group">
-                        <label class="sr-only" for="">label</label>
-                        <input type="email" class="form-control" formControlName="name" placeholder="Search here">
-                    </div>
-                    <button type="submit" class="btn btn-primary mr-2">Tìm kiếm</button>
-                </form>
-
                 <div class="sorting mr-auto">
+                    <div class="input-group">
+                        <form action="" method="post" class="form-inline" [formGroup]="searchForm"
+                            (ngSubmit)="onSearch()">
+                            <input formControlName="name" type="text" class="form-control" placeholder="Tìm kiếm"
+                                aria-describedby="button-addon2">
+                            <button type="submit" class="btn btn-secondary" type="button" id="button-addon2"><span
+                                    class="lnr lnr-magnifier" id="search"></span></button>
+                        </form>
+                    </div>
                 </div>
                 <div class="filter-bar d-flex flex-wrap align-items-center">
                     <div class="pagination">
